@@ -9,5 +9,7 @@ router.get('/', controller.listUsers);
 
 router.post('/', controller.addUser)
 
+router.patch('/:userId', controller.editUser)
+
 
 module.exports = router;

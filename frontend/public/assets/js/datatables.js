@@ -161,6 +161,7 @@ $(document).ready(function() {
 	var tableElement = $('#example');
 
     tableElement.dataTable( {
+		serverSide: true,
 		"sDom": "<'row'<'col-md-6'l T><'col-md-6'f>r>t<'row'<'col-md-12'p i>>",
 			"oTableTools": {
 			"aButtons": [

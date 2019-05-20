@@ -3,7 +3,14 @@ const User = require('../models/user')
 exports.addUser = (req, res) => {
 
     console.log(req.body)
-    let user = new User({username: req.body.username, password: req.body.password});
+    let user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        loginId: req.body.loginId,
+        contact: req.body.contact,
+        userClass: req.body.userClass,
+        password: req.body.password
+    });
 
     //save the new user
     user.save((err, newUser) => {
@@ -26,7 +33,6 @@ exports.listUsers = (req, res) => {
  */
 exports.getUserByUsername = (req, res) => {
     let username = req.params.username;
-    console.log(username)
 
     User.findOne().byUserName(username).exec(function (err, result) {
 
@@ -36,5 +42,12 @@ exports.getUserByUsername = (req, res) => {
             res.status(200).json(result)
     })
 
+
+}
+
+exports.editUser = (req, res) => {
+
+    let userId = req.params.id;
+    console.log(username)
 
 }
