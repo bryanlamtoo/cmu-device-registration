@@ -31,6 +31,10 @@
                         </router-link>
                     </li>
 
+                    <li>
+                        <router-link to="/manageUsers"><i class="fa fa-users"></i><span class="title">Manage Users</span> </router-link>
+                    </li>
+
 
                 </ul>
 
