@@ -4,6 +4,7 @@ import AppContainer from "@/components/containers/AppContainer";
 import Devices from "@/components/Devices";
 import Page404 from "@/components/pages/Page404";
 import UserList from "../components/UserList";
+import Dashboard from "../components/Dashboard";
 
 Vue.use(Router)
 
@@ -21,9 +22,14 @@ export default new Router({
 
             children: [
                 {
-                    path: 'devices',
-                    name: 'My Devices',
-                    component: Devices
+                    path: '',
+                    component: Dashboard,
+                    name: 'Dashboard'
+                },
+                {
+                    path: '/devices',
+                    component: Devices,
+                    name: 'My Devices'
                 },
                 {
                     path: '/manageUsers',
@@ -34,7 +40,7 @@ export default new Router({
         },
 
         {
-            path:'/404',
+            path: '/404',
             component: Page404,
             name: 'Page404'
         }

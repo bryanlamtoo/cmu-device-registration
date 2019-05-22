@@ -13,7 +13,7 @@
             <div class="page-content">
                 <div class="content">
 
-                    <Breadcrumb :list="list"/>
+                    <!--<Breadcrumb :list="list"/>-->
 
                     <!-- END PAGE TITLE -->
                     <!-- BEGIN PlACE PAGE CONTENT HERE -->
@@ -35,7 +35,6 @@
 <script>
     import AppHeader from '@/components/containers/AppHeader'
     import AppSidebar from '@/components/containers/AppSidebar'
-    import Breadcrumb from '@/components/Breadcrum/BreadCrumb'
 
     export default {
 
@@ -43,7 +42,6 @@
         components: {
             AppHeader,
             AppSidebar,
-            Breadcrumb
         },
 
         computed: {

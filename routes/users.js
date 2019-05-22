@@ -11,5 +11,7 @@ router.post('/', controller.addUser)
 
 router.patch('/:userId', controller.editUser)
 
+router.delete('/:userId', controller.deleteUser)
+
 
 module.exports = router;

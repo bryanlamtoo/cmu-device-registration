@@ -20,14 +20,13 @@
                 <p class="menu-title sm">BROWSE <span class="pull-right"><a href="javascript:;"><i
                         class="material-icons">refresh</i></a></span></p>
                 <ul>
-                    <!--<li class="start active ">-->
-                        <!--<router-link to="/"><i class="material-icons">home</i> <span-->
-                            <!--class="title">Home</span> <span class="selected"></span> </router-link>-->
-                    <!--</li>-->
+                    <li>
+                        <router-link to="/"><i class="material-icons">home</i> <span class="title">Dashboard</span></router-link>
+                    </li>
                     <li class="status active">
-                        <router-link to="/devices"><i class="material-icons">airplay</i> <span
-                                class="title">Devices</span> <span
-                                class=" badge badge-disable pull-right ">3</span>
+                        <router-link to="/devices">
+                            <i class="material-icons">airplay</i>
+                            <span class="title">Devices</span> <span class=" badge badge-disable pull-right ">3</span>
                         </router-link>
                     </li>
 

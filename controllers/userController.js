@@ -12,12 +12,13 @@ exports.addUser = (req, res) => {
         password: req.body.password
     });
 
+
     //save the new user
     user.save((err, newUser) => {
         if (err)
             console.log(err);
 
-        res.status(200).json(newUser)
+        res.status(201).json(newUser)
     })
 }
 
@@ -49,5 +50,20 @@ exports.editUser = (req, res) => {
 
     let userId = req.params.id;
     console.log(username)
+}
 
+exports.deleteUser = (req, resp) => {
+    console.log(req.params)
+    let id = req.params.userId
+
+    User.deleteOne({_id: id}).exec((err, res) => {
+        if (err) {
+            console.log('Error: ', err)
+            resp.status(404).send()
+        } else {
+            console.log('Res: ', res)
+            resp.status(200).send('User successfully deleted')
+
+        }
+    })
 }

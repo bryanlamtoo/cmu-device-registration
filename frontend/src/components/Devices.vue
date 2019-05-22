@@ -138,14 +138,15 @@
                                                 <label class="form-label">Device Name</label>
                                                 <span class="help">e.g. "Windows PC"</span>
                                                 <div class="controls">
-                                                    <input type="text" class="form-control">
+                                                    <input v-model="device.name" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Mac Address</label>
                                                 <span class="help">e.g. "6a:00:02:7c:5a:81"</span>
                                                 <div class="controls">
-                                                    <input type="text" class="form-control">
+                                                    <input v-model="device.mac_address" type="text"
+                                                           class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -154,7 +155,7 @@
                                                 <label class="form-label">Device IME</label>
                                                 <span class="help">e.g. "XXXXXXXXXXXXXXXXXX"</span>
                                                 <div class="controls">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" v-model="device.imei" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -162,10 +163,11 @@
                                                 <span class="help">Select from the list</span>
                                                 <div class="controls">
 
-                                                    <select id="source" style="width:100%">
-                                                        <option value="AK">Phone</option>
-                                                        <option value="HI">Tablet</option>
-                                                        <option value="HI">Computer</option>
+                                                    <select v-model="device.type" id="source" style="width:100%">
+                                                        <option value="phone">Phone</option>
+                                                        <option value="tablet">Tablet</option>
+                                                        <option value="computer">Computer</option>
+                                                        <option value="other">Other</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -178,12 +180,36 @@
                                             <span class="help">Select from the list</span>
                                             <div class="controls">
 
-                                                <select id="os" style="width:100%">
-                                                    <option value="AK">IOS</option>
-                                                    <option value="HI">Android</option>
-                                                    <option value="HI">Windows</option>
-                                                    <option value="HI">Mac OS</option>
+                                                <select v-model="device.os" id="os" style="width:100%">
+                                                    <option value="ios">IOS</option>
+                                                    <option value="android">Android</option>
+                                                    <option value="windows">Windows</option>
+                                                    <option value="macOs">Mac OS</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Connection Type</label>
+                                            <span class="help">Select from the list</span>
+                                            <div class="controls">
+
+                                                <select v-model="device.connectionType" id="ct" style="width:100%">
+                                                    <option value="wlan">WLAN</option>
+                                                    <option value="wired">WIRED</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row-fluid">
+                                            <label class="form-label">Activate device</label>
+                                            <div class="slide-primary">
+                                                <input type="checkbox" name="switch" class="ios" checked="checked"/>
+                                                <span> Enable this device</span>
                                             </div>
                                         </div>
                                     </div>
@@ -194,7 +220,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" @click="saveDevice" data-dismiss="modal" class="btn btn-primary">Save
+                        </button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -207,8 +234,34 @@
 </template>
 
 <script>
+
+    import api from '../api/apiServices'
+
     export default {
-        name: "Devices"
+        name: "Devices",
+
+        data() {
+            return {
+                device: {}
+            }
+        },
+        methods: {
+
+            saveDevice() {
+
+                console.log(this.device)
+                //set the user ID
+                this.device.userId = '5ce31954a4378217796b1620';
+
+                api.addNewDevice(this.device).then(res => {
+                    console.log(res)
+
+                }).catch(err => {
+
+                    console.log(err)
+                })
+            }
+        }
     }
 </script>
 

@@ -41,7 +41,8 @@
                             <td class="center"> {{user.contact}}</td>
                             <td class="center">{{user.userClass}}</td>
                             <td class="center">
-                                <div class="col-4"><a href="javascript:void(0)" @click="deleteUser(user)"><i
+                                <div class="col-4"><a data-target="#deleteUserModal" data-toggle="modal"
+                                                      href="javascript:void(0)" @click="setUserToDelete(user)"><i
                                         class="fa fa-trash"></i></a></div>
                             </td>
                         </tr>
@@ -51,13 +52,37 @@
             </div>
         </div>
 
-        <b-modal ok-title="Yes" ok-variant="danger" v-model="showDeleteConfirmation" @ok="deleteContact">
-            <b-card-title>Delete Contact</b-card-title>
-            <span>
-                Are you sure you want to remove this contact?
-            </span>
-        </b-modal>
+        <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <br>
+                        <i class="fa fa-trash fa-4x"></i>
+                        <h4 id="deleteUserModalLabel" class="semi-bold">Are you sure you want to remove the user
+                            <br/><br/>
+                            <p class="bold">{{userToDelete.firstName}} {{userToDelete.lastName}} ?</p></h4>
+                        <br>
+                    </div>
 
+                    <!--<div class="modal-body">-->
+                    <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                    <!--<div class="grid-body no-border">-->
+                    <!--<br>-->
+                    <!--<p class="text-center">Are you sure you want to delete </p>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button @click="deleteUser" data-dismiss="modal" type="button" class="btn btn-primary">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
              aria-hidden="true">
@@ -82,14 +107,16 @@
                                                 <label class="form-label">First Name</label>
                                                 <span class="help">e.g. "John"</span>
                                                 <div class="controls">
-                                                    <input v-model="newUser.firstName" type="text" class="form-control">
+                                                    <input v-model="newUser.firstName" type="text"
+                                                           class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Contact</label>
                                                 <span class="help">e.g. "+250 789 123456"</span>
                                                 <div class="controls">
-                                                    <input v-model="newUser.contact" type="text" class="form-control">
+                                                    <input v-model="newUser.contact" type="text"
+                                                           class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +125,8 @@
                                                 <label class="form-label">Last Name</label>
                                                 <span class="help">e.g. "Doe"</span>
                                                 <div class="controls">
-                                                    <input type="text" v-model="newUser.lastName" class="form-control">
+                                                    <input type="text" v-model="newUser.lastName"
+                                                           class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -106,7 +134,8 @@
                                                 <span class="help">Select from the list</span>
                                                 <div class="controls">
 
-                                                    <select v-model="newUser.userClass" id="source" style="width:100%">
+                                                    <select v-model="newUser.userClass" id="source"
+                                                            style="width:100%">
                                                         <option value="Student">Student</option>
                                                         <option value="Staff">Staff</option>
                                                         <option value="Guest">Guest</option>
@@ -126,6 +155,9 @@
                 </div>
             </div>
         </div>
+
+        <button class="btn btn-primary btn-cons" @click="showSuccess('Your message has been succeeded')">Show Success Messsage</button>
+
     </div>
 
 </template>
@@ -146,7 +178,7 @@
             return {
                 newUser: {},
                 userList: [],
-                showDeleteConfirmation: false
+                userToDelete: {}
 
             }
         },
@@ -182,10 +214,24 @@
                 })
 
             },
-            deleteUser(user) {
-                this.showDeleteConfirmation = true
-                console.log(user._id)
-                // api.deleteUser(user._id)
+            deleteUser() {
+
+                console.log(this.userToDelete._id)
+                api.deleteUser(this.userToDelete._id).then(res => {
+
+                    console.log(res)
+                    this.getUserList();
+                })
+            },
+            setUserToDelete(user) {
+                this.userToDelete = user
+            },
+
+            showSuccess(msg){
+                Messenger().post({
+                    message: msg,
+                    showCloseButton: true
+                });
 
             }
         }

@@ -21,11 +21,16 @@ export default {
         return apiClient.get('/users')
     },
 
-    editUser(id){
-        return apiClient.patch('/users',id)
+    editUser(id) {
+        return apiClient.patch('/users', id)
     },
 
-    deleteUser(id){
-        return apiClient.delete('/users',id)
+    deleteUser(id) {
+        return apiClient.delete('/users/' + id)
+    },
+
+    addNewDevice(device){
+
+        return apiClient.post('/devices', device)
     }
 }
