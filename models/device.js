@@ -1,41 +1,23 @@
+const Constants = require('../utils/constants')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const deviceTypeENUM = {
-    PHONE: 'phone',
-    TABLET: 'tablet',
-    COMPUTER: "computer",
-    OTHER: 'other'
-}
-
-const deviceOSNUM = {
-    ANDROID: 'android',
-    WINDOWS: 'windows',
-    MAC: "mac",
-    IOS: 'ios'
-}
-
-const connectionTypeENUM = {
-    WIRED: 'wired',
-    WLAN: 'wlan'
-}
-
-var deviceSchema = new Schema({
+const deviceSchema = new Schema({
     mac: {
         type: String,
         required: true
     },
-    type: {
+    deviceType: {
         type: String,
-        default: deviceTypeENUM.OTHER
+        default: Constants.DeviceType.OTHER
     },
     hostName: {
         type: String,
         required: true
     },
     ipAddr: {
-        type: Number,
-        required: true
+        type: String,
+        default: ''
     },
     dateAdded: {
         type: Date,
@@ -44,19 +26,34 @@ var deviceSchema = new Schema({
     dateUpdated: {
         type: Date
     },
-    imei: Number,
+    serial: {
+        type: String,
+        default: ''
+    },
 
-    os: String,
-    make: String,
-    enabled: Boolean,
+    os: {
+        type: String,
+        default: ''
+    },
+    manufacturer: {
+        type: String,
+        default: ''
+    },
+    enabled: {
+        type: Boolean,
+        default: false
+    },
     deleted: {
         type: Boolean,
         default: false
     },
-    userId: String,
+    userId: {
+        type: String,
+        required: true
+    },
     connectionType: {
         type: String,
-        default: connectionTypeENUM.WLAN
+        default: Constants.ConnectionType.WLAN
     }
 
 })

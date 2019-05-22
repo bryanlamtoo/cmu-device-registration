@@ -29,8 +29,16 @@ export default {
         return apiClient.delete('/users/' + id)
     },
 
-    addNewDevice(device){
+    addNewDevice(device) {
 
         return apiClient.post('/devices', device)
+    },
+
+    getUserDeviceList(userId) {
+        return apiClient.get('/devices' + userId)
+    },
+
+    getDeviceList() {
+        return apiClient.get('/devices')
     }
 }

@@ -145,17 +145,17 @@
                                                 <label class="form-label">Mac Address</label>
                                                 <span class="help">e.g. "6a:00:02:7c:5a:81"</span>
                                                 <div class="controls">
-                                                    <input v-model="device.mac_address" type="text"
+                                                    <input v-model="device.mac" type="text"
                                                            class="form-control">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label">Device IME</label>
+                                                <label class="form-label">Serial</label>
                                                 <span class="help">e.g. "XXXXXXXXXXXXXXXXXX"</span>
                                                 <div class="controls">
-                                                    <input type="text" v-model="device.imei" class="form-control">
+                                                    <input type="text" v-model="device.serial" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -163,7 +163,7 @@
                                                 <span class="help">Select from the list</span>
                                                 <div class="controls">
 
-                                                    <select v-model="device.type" id="source" style="width:100%">
+                                                    <select v-model="device.deviceType" id="source" style="width:100%">
                                                         <option value="phone">Phone</option>
                                                         <option value="tablet">Tablet</option>
                                                         <option value="computer">Computer</option>
@@ -174,42 +174,79 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Operating System</label>
-                                            <span class="help">Select from the list</span>
-                                            <div class="controls">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row-fluid">
+                                                <div class="form-group">
+                                                    <label class="form-label">Manufacturer</label>
+                                                    <span class="help">Select from the list</span>
+                                                    <div class="controls">
 
-                                                <select v-model="device.os" id="os" style="width:100%">
-                                                    <option value="ios">IOS</option>
-                                                    <option value="android">Android</option>
-                                                    <option value="windows">Windows</option>
-                                                    <option value="macOs">Mac OS</option>
-                                                </select>
+                                                        <select v-model="device.manufacturer" id="mt"
+                                                                style="width:100%">
+                                                            <option value="apple">Apple</option>
+                                                            <option value="hp">HP</option>
+                                                            <option value="dell">Dell</option>
+                                                            <option value="asus">Asus</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row-fluid">
+                                                <div class="form-group">
+                                                    <label class="form-label">Model</label>
+                                                    <span class="help">e.g. "macbook pro"</span>
+                                                    <div class="controls">
+                                                        <input v-model="device.model" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Connection Type</label>
-                                            <span class="help">Select from the list</span>
-                                            <div class="controls">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Operating System</label>
+                                                <span class="help">Select from the list</span>
+                                                <div class="controls">
 
-                                                <select v-model="device.connectionType" id="ct" style="width:100%">
-                                                    <option value="wlan">WLAN</option>
-                                                    <option value="wired">WIRED</option>
-                                                </select>
+                                                    <select v-model="device.os" id="os" style="width:100%">
+                                                        <option value="ios">IOS</option>
+                                                        <option value="android">Android</option>
+                                                        <option value="windows">Windows</option>
+                                                        <option value="macos">Mac OS</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Connection Type</label>
+                                                <span class="help">Select from the list</span>
+                                                <div class="controls">
+
+                                                    <select v-model="device.connectionType" id="ct" style="width:100%">
+                                                        <option value="wlan">WLAN</option>
+                                                        <option value="wired">WIRED</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 
 
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="row-fluid">
-                                            <label class="form-label">Activate device</label>
-                                            <div class="slide-primary">
-                                                <input type="checkbox" name="switch" class="ios" checked="checked"/>
-                                                <span> Enable this device</span>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row-fluid">
+                                                <label class="form-label">Activate device</label>
+                                                <div class="slide-primary">
+                                                    <input type="checkbox" name="switch" class="ios" checked="checked"/>
+                                                    <span> Enable this device</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -242,8 +279,13 @@
 
         data() {
             return {
-                device: {}
+                device: {},
+                deviceList: [],
+                currUser: null
             }
+        },
+        created() {
+            this.getDeviceList()
         },
         methods: {
 
@@ -251,8 +293,7 @@
 
                 console.log(this.device)
                 //set the user ID
-                this.device.userId = '5ce31954a4378217796b1620';
-
+                this.device.userId = this.currUser.id;
                 api.addNewDevice(this.device).then(res => {
                     console.log(res)
 
@@ -260,6 +301,24 @@
 
                     console.log(err)
                 })
+            },
+
+            getDeviceList() {
+                this.currUser.id = '5ce31954a4378217796b1620'
+                api.getUserDeviceList(res => {
+
+                    console.log(res)
+                    this.deviceList = [];
+                    if (res.data.length > 0)
+                        res.data.forEach(device => {
+                            this.deviceList.push(device)
+                        })
+
+                }).catch(err => {
+
+                    console.log(err)
+                })
+
             }
         }
     }
