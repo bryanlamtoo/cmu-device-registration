@@ -1,6 +1,6 @@
 const User = require('../models/user')
 
-exports.addUser = (req, res) => {
+exports.addUser = (req, resp) => {
 
     console.log(req.body)
     let user = new User({
@@ -12,14 +12,21 @@ exports.addUser = (req, res) => {
         password: req.body.password
     });
 
+    User.findOne({loginId: user.loginId}).then(res => {
 
-    //save the new user
-    user.save((err, newUser) => {
-        if (err)
-            console.log(err);
-
-        res.status(201).json(newUser)
+        if (res) {
+            resp.status(403).json('User with the login ID already exists')
+        } else {
+            //save the new user
+            user.save((err, newUser) => {
+                if (err)
+                    console.log(err);
+                resp.status(201).json(newUser)
+            })
+        }
     })
+
+
 }
 
 exports.listUsers = (req, res) => {

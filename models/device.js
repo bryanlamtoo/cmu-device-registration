@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const deviceSchema = new Schema({
     mac: {
         type: String,
-        required: true
+        required: true,
+        dropDups: true
     },
     deviceType: {
         type: String,

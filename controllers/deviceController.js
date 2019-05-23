@@ -33,18 +33,23 @@ exports.addNewDevice = (req, res) => {
                     userId: req.body.userId,
                     connectionType: req.body.connectionType,
                 })
+            deviceModel.findOne({mac: newDevice.mac}).then(result => {
 
-            newDevice.save((err, savedDevice) => {
-                if (err)
-                    console.log(err);
-                else {
+                if (result) {
+                    res.status(403).json('Device with the mac address already exists')
+                } else
+                    newDevice.save((err, savedDevice) => {
+                        if (err)
+                            console.log(err);
+                        else {
 
-                    //If device is enabled, reserve and IP for it
-                    if (savedDevice.enabled)
-                        addDeviceToNetwork(savedDevice)
-                    else
-                        res.status(201).json(savedDevice)
-                }
+                            //If device is enabled, reserve and IP for it
+                            if (savedDevice.enabled)
+                                addDeviceToNetwork(savedDevice)
+                            else
+                                res.status(201).json(savedDevice)
+                        }
+                    })
             })
         }
     })
@@ -114,7 +119,7 @@ function addDeviceToNetwork(savedDevice, res) {
          * Declare the variables to be used
          */
         let regType;
-        const serverName = 'rwn-ad-001.go.illinois.dvp s.local'
+        const serverName = '102.133.171.147'
         if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
             regType = 52
         else
@@ -247,12 +252,31 @@ exports.updateDevice = (req, resp) => {
 
 }
 
-exports.activateDevice = (req, res) => {
-    let userId = req.params.userId
+exports.activateDevice = (req, resp) => {
+
+
     let deviceId = req.params.deviceId
+    let status = req.body.enabled
 
-    console.log(req.params)
+    console.log(status)
 
-    res.status(200)
+    deviceModel.findOne({_id: deviceId}).then(result => {
+
+        if (result) {
+            deviceModel.updateOne({_id: deviceId}, {enabled: status}).exec((err, result) => {
+
+                if (err) {
+                    console.log(err)
+                    resp.status(500).json(err)
+                } else {
+                    if (status === true)
+                        resp.json('Device activated')
+                    else
+                        resp.json('Device deactivated')
+
+                }
+            })
+        }
+    })
 }
 

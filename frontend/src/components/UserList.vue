@@ -3,16 +3,15 @@
         <div class="page-title"><i class="icon-custom-left"></i>
             <h3>Manage - <span class="semi-bold">Users</span></h3>
             <div class="pull-right actions">
-                <!--<button class="btn btn-primary btn-cons" type="button" id="btn-new-ticket">New Device</button>-->
                 <button class="btn btn-primary btn-cons" data-toggle="modal" data-target="#addUserModal"> Add new user
                 </button>
-
             </div>
         </div>
+
         <div class="span12">
             <div class="grid simple ">
                 <div class="grid-title">
-                    <h4>Registered <span class="semi-bold">Users</span></h4>
+                    <h4>Registered <span class="semi-bold"> Users</span></h4>
                     <div class="tools">
                         <a href="javascript:;" class="collapse"></a>
                         <a href="#grid-config" data-toggle="modal" class="config"></a>
@@ -20,10 +19,10 @@
                     </div>
                 </div>
                 <div class="grid-body ">
-                    <table class="table table-striped" id="example2">
-                        <thead>
+                    <table class="table table-striped table-flip-scroll cf" id="example2">
+                        <thead class="cf">
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Login ID</th>
@@ -96,50 +95,70 @@
                             <div class="col-md-12">
                                 <div class="grid-body no-border">
                                     <br>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">First Name</label>
-                                                <span class="help">e.g. "John"</span>
-                                                <div class="controls">
-                                                    <input v-model="user.firstName" type="text"
-                                                           class="form-control">
+                                    <!--<div class="row">-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">First Name</label>
+                                                    <span class="help">e.g. "John"</span>
+                                                    <div class="controls">
+                                                        <input v-model="user.firstName" type="text"
+                                                               class="form-control">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Contact</label>
-                                                <span class="help">e.g. "+250 789 123456"</span>
-                                                <div class="controls">
-                                                    <input v-model="user.contact" type="text"
-                                                           class="form-control">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Last Name</label>
+                                                    <span class="help">e.g. "Doe"</span>
+                                                    <div class="controls">
+                                                        <input type="text" v-model="user.lastName"
+                                                               class="form-control">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Last Name</label>
-                                                <span class="help">e.g. "Doe"</span>
-                                                <div class="controls">
-                                                    <input type="text" v-model="user.lastName"
-                                                           class="form-control">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Contact</label>
+                                                    <span class="help">e.g. "+250 789 123456"</span>
+                                                    <div class="controls">
+                                                        <input v-model="user.contact" type="text"
+                                                               class="form-control">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="form-label">User Class</label>
-                                                <span class="help">Select from the list</span>
-                                                <div class="controls">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">LoginId</label>
+                                                    <span class="help">e.g. "jdhoe"</span>
+                                                    <div class="controls">
+                                                        <input v-model="user.loginId" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">User Class</label>
+                                                    <span class="help">Select from the list</span>
+                                                    <div class="controls">
 
-                                                    <select v-model="user.userClass" id="source"
-                                                            style="width:100%">
-                                                        <option value="student">Student</option>
-                                                        <option value="staff">Staff</option>
-                                                        <option value="guest">Guest</option>
-                                                        <option value="admin">Admin</option>
-                                                    </select>
+                                                        <select v-model="user.userClass" id="source"
+                                                                style="width:100%">
+                                                            <option value="student">Student</option>
+                                                            <option value="staff">Staff</option>
+                                                            <option value="guest">Guest</option>
+                                                            <option value="admin">Admin</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>
@@ -186,7 +205,7 @@
             saveUser() {
 
                 //Create the login ID
-                this.user.loginId = this.user.firstName.charAt(0).concat(this.user.lastName).toLowerCase();
+                // this.user.loginId = this.user.firstName.charAt(0).concat(this.user.lastName).toLowerCase();
                 if (this.isNewUser)
 
                     api.addNewUser(this.user).then(res => {
@@ -237,6 +256,7 @@
             },
             deleteUser() {
                 api.deleteUser(this.userToDelete._id).then(res => {
+                    this.isNewUser = true
                     this.showNotification('User deleted!', 'success')
                     this.getUserList();
                 })

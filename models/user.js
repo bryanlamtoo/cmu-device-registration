@@ -15,7 +15,8 @@ const userSchema = new Schema({
     },
     loginId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     contact: {
         type: String,
@@ -34,7 +35,7 @@ const userSchema = new Schema({
 
 })
 
-userSchema.index({loginId: 1})
+userSchema.index({loginId: 1}, {unique: true})
 
 userSchema.query.byLoginId = function (loginId) {
     return this.where({loginId: new RegExp(loginId, 'i')});

@@ -1,82 +1,81 @@
 <template>
-    <!-- BEGIN PAGE TITLE -->
-    <div class="page-title"><i class="icon-custom-left"></i>
-        <h3>My Devices</h3>
-        <div class="pull-right actions">
-            <!--<button class="btn btn-primary btn-cons" type="button" id="btn-new-ticket">New Device</button>-->
-            <button class="btn btn-primary btn-cons" data-toggle="modal" data-target="#myModal"> Add new device</button>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="grid simple ">
-
-                    <div class="grid-title no-border">
-                        <h4>Registered <span class="semi-bold"> Devices</span></h4>
-                        <div class="tools">
-                            <a href="javascript:;" class="collapse"></a>
-                            <a href="#grid-config" data-toggle="modal" class="config"></a>
-                            <a href="javascript:;" class="reload"></a>
-                        </div>
-                    </div>
-
-                    <div class="grid-body no-border">
-                        <table class="table table-striped table-flip-scroll cf">
-                            <thead class="cf">
-                            <tr>
-                                <th>
-                                    #
-                                </th>
-                                <th>Name</th>
-                                <th>Serial</th>
-                                <th>Mac Address</th>
-                                <th>Type</th>
-                                <th>Connection</th>
-                                <th>OS</th>
-                                <th>Make</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr v-for="(device,index) in deviceList">
-                                <td>{{++index}}</td>
-                                <td>{{device.hostName}}</td>
-                                <td>{{device.serial}}</td>
-                                <td><span>{{device.mac}}</span>
-                                </td>
-                                <td>{{device.deviceType | capitalize}}</td>
-                                <td>{{device.connectionType | capitalize}}</td>
-                                <td>{{device.os | capitalize}}</td>
-                                <td><a href=""></a> {{device.manufacturer | capitalize}}</td>
-                                <td>
-                                    <span v-if="device.enabled" class="label label-success">ACTIVE</span>
-                                    <span v-else class="label label-danger">INACTIVE</span>
-
-                                </td>
-                                <td>
-
-                                    <a data-target="#deleteDeviceModal" data-toggle="modal"
-                                       href="javascript:void(0)" @click="setDeviceToDelete(device)">
-                                        <span class="fa fa-trash"></span>
-                                    </a>
-
-                                    <a class="m-l-20" data-target="#myModal" data-toggle="modal"
-                                       href="javascript:void(0)" @click="setDeviceToEdit(device)">
-                                        <span class="fa fa-edit"></span>
-                                    </a>
-
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                    </div>
-                </div>
+    <div class="row-fluid">
+        <div class="page-title"><i class="icon-custom-left"></i>
+            <h3>Manage - <span class="semi-bold">Devices</span></h3>
+            <div class="pull-right actions">
+                <button class="btn btn-primary btn-cons" data-toggle="modal" data-target="#myModal"> Add new device
+                </button>
             </div>
         </div>
 
+        <div class="span12">
+            <div class="grid simple ">
+                <div class="grid-title">
+                    <h4>Registered <span class="semi-bold"> Devices</span></h4>
+                    <div class="tools">
+                        <a href="javascript:;" class="collapse"></a>
+                        <a href="#grid-config" data-toggle="modal" class="config"></a>
+                        <a href="javascript:;" class="reload"></a>
+                    </div>
+                </div>
+                <div class="grid-body ">
+                    <table class="table table-striped table-flip-scroll cf">
+                        <thead class="cf">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Serial</th>
+                            <th>Mac Address</th>
+                            <th>Type</th>
+                            <th>Connection</th>
+                            <th>OS</th>
+                            <th>Make</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(device,index) in deviceList" class="odd gradeX">
+                            <td>{{++index}}</td>
+                            <td>{{device.hostName}}</td>
+                            <td>{{device.serial}}</td>
+                            <td><span>{{device.mac}}</span>
+                            </td>
+                            <td>{{device.deviceType | capitalize}}</td>
+                            <td>{{device.connectionType | capitalize}}</td>
+                            <td>{{device.os | capitalize}}</td>
+                            <td><a href=""></a> {{device.manufacturer | capitalize}}</td>
+                            <td>
+                                <span v-if="device.enabled" class="label label-success">ACTIVE</span>
+                                <span v-else class="label label-danger">INACTIVE</span>
+
+                            </td>
+                            <td>
+
+                                <a data-target="#deleteDeviceModal" data-toggle="modal"
+                                   href="javascript:void(0)" @click="setDeviceToDelete(device)">
+                                    <span class="fa fa-trash"></span>
+                                </a>
+
+                                <a class="m-l-20" data-target="#myModal" data-toggle="modal"
+                                   href="javascript:void(0)" @click="setDeviceToEdit(device)">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+
+                                <div class="slide-primary m-l-20">
+                                    <input  v-model="device.enabled" @change="changeDeviceStatus(device)" type="checkbox"
+                                           name="switch"
+                                           class="ios" checked="checked"/>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="deleteDeviceModal" tabindex="-1" role="dialog"
              aria-labelledby="deleteDeviceModalLabel"
@@ -101,7 +100,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
@@ -256,7 +254,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal -->
+
 
     </div>
 </template>
@@ -274,7 +272,8 @@
                 deviceList: [],
                 currUser: {},
                 deviceToDelete: {},
-                isNewDevice: true
+                isNewDevice: true,
+                enableDevice: false
             }
         },
         created() {
@@ -339,13 +338,26 @@
                 this.isNewDevice = false
                 this.device = device
             },
+            changeDeviceStatus(device) {
+
+                api.changeDeviceStatus(device._id, device).then(res => {
+
+                    this.showNotification(res.data, 'success')
+
+                }).catch(err => {
+                    if (err.response)
+                        this.showNotification(err.response.data, 'error')
+                    else
+                        this.showNotification('An error occurred', 'error')
+                })
+            },
 
             deleteDevice() {
 
                 api.deleteDevice(this.deviceToDelete._id).then(res => {
-                    this.showNotification('Device deleted!','success')
+                    this.showNotification('Device deleted!', 'success')
                     this.getDeviceList();
-                }).catch(err=>{
+                }).catch(err => {
                     if (err.response)
                         this.showNotification(err.response.data, 'error')
                     else

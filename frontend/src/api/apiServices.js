@@ -48,5 +48,9 @@ export default {
 
     deleteDevice(deviceId) {
         return apiClient.delete('/devices/' + deviceId)
+    },
+
+    changeDeviceStatus(deviceId, data) {
+        return apiClient.put('devices/status/' + deviceId, data)
     }
 }
