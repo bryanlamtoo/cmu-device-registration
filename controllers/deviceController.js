@@ -15,7 +15,7 @@ exports.addNewDevice = (req, res) => {
 
         if (result.length >= 3) {
 
-            res.status(403).send('Maximum number of devices reached')
+            res.status(403).json('Maximum number of devices reached')
             console.log('Maximum number of devices reached for user = ' + req.body.userId)
         } else {
 

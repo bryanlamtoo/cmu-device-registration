@@ -289,16 +289,27 @@
                 if (this.isNewDevice)
                     api.addNewDevice(this.device).then(res => {
                         this.getDeviceList()
+                        this.showNotification('Device has been added', 'success')
                     }).catch(err => {
-                        console.log(err)
-                    })
+                            if (err.response)
+                                this.showNotification(err.response.data, 'error')
+                            else
+                                this.showNotification('An error occurred', 'error')
+
+                        }
+                    )
                 else {
                     api.editDevice(this.device._id, this.device).then(res => {
-                        console.log(res)
                         this.getDeviceList()
                         this.isNewDevice = true
+                        this.showNotification('Device updated!', 'success')
+
                     }).catch(err => {
-                        console.log(err)
+                        if (err.response)
+                            this.showNotification(err.response.data, 'error')
+                        else
+                            this.showNotification('An error occurred', 'error')
+
                     })
                 }
             },
@@ -314,8 +325,10 @@
                         })
 
                 }).catch(err => {
-
-                    console.log(err)
+                    if (err.response)
+                        this.showNotification(err.response.data, 'error')
+                    else
+                        this.showNotification('An error occurred', 'error')
                 })
 
             },
@@ -330,10 +343,17 @@
             deleteDevice() {
 
                 api.deleteDevice(this.deviceToDelete._id).then(res => {
-
-                    console.log(res)
+                    this.showNotification('Device deleted!','success')
                     this.getDeviceList();
                 })
+            },
+            showNotification(msg, type) {
+                Messenger().post({
+                    message: msg,
+                    type: type,
+                    showCloseButton: true
+                });
+
             }
         },
         filters: {

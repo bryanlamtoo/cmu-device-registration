@@ -78,7 +78,8 @@
                     <!--</div>-->
                     <div class="modal-footer text-center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button @click="deleteUser" data-dismiss="modal" type="button" class="btn btn-primary">Delete</button>
+                        <button @click="deleteUser" data-dismiss="modal" type="button" class="btn btn-primary">Delete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -156,7 +157,6 @@
             </div>
         </div>
 
-        <button class="btn btn-primary btn-cons" @click="showSuccess('Your message has been succeeded')">Show Success Messsage</button>
 
     </div>
 
@@ -191,8 +191,12 @@
                 this.newUser.loginId = this.newUser.firstName.charAt(0).concat(this.newUser.lastName).toLowerCase();
                 api.addNewUser(this.newUser).then(res => {
                     this.userList.push(res.data)
+                    this.showNotification('User has been added', 'success')
                 }).catch(err => {
-
+                    if (err.response)
+                        this.showNotification(err.response.data, 'error')
+                    else
+                        this.showNotification('An error occurred', 'error')
                 })
             },
 
@@ -210,16 +214,16 @@
                     }
 
                 }).catch(err => {
-
+                    if (err.response)
+                        this.showNotification(err.response.data, 'error')
+                    else
+                        this.showNotification('An error occurred', 'error')
                 })
 
             },
             deleteUser() {
-
-                console.log(this.userToDelete._id)
                 api.deleteUser(this.userToDelete._id).then(res => {
-
-                    console.log(res)
+                    this.showNotification('User deleted!', 'success')
                     this.getUserList();
                 })
             },
@@ -227,9 +231,10 @@
                 this.userToDelete = user
             },
 
-            showSuccess(msg){
+            showNotification(msg, type) {
                 Messenger().post({
                     message: msg,
+                    type: type,
                     showCloseButton: true
                 });
 
