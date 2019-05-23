@@ -35,9 +35,9 @@ exports.listUsers = (req, res) => {
 exports.getUserByUsername = (req, res) => {
     let username = req.params.username;
 
-    User.findOne().byUserName(username).exec(function (err, result) {
+    User.findOne().byLoginId(username).exec(function (err, result) {
 
-        if (result.length === 0)
+        if (result === null || result.length === 0)
             res.status(404).json('No user exists with that username')
         else
             res.status(200).json(result)
@@ -46,10 +46,21 @@ exports.getUserByUsername = (req, res) => {
 
 }
 
-exports.editUser = (req, res) => {
+exports.editUser = (req, resp) => {
 
-    let userId = req.params.id;
-    console.log(username)
+    let userId = req.params.userId;
+
+    User.updateOne({_id: userId}, req.body).exec((err, res) => {
+        if (err) {
+            console.log(err)
+            resp.status(400).json(err)
+        } else {
+            console.log(res)
+            User.findOne({_id: userId}).then(res => {
+                resp.status(200).json(res)
+            })
+        }
+    })
 }
 
 exports.deleteUser = (req, resp) => {

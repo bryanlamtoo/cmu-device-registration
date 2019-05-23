@@ -345,6 +345,11 @@
                 api.deleteDevice(this.deviceToDelete._id).then(res => {
                     this.showNotification('Device deleted!','success')
                     this.getDeviceList();
+                }).catch(err=>{
+                    if (err.response)
+                        this.showNotification(err.response.data, 'error')
+                    else
+                        this.showNotification('An error occurred', 'error')
                 })
             },
             showNotification(msg, type) {

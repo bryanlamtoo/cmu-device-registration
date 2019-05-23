@@ -21,8 +21,8 @@ export default {
         return apiClient.get('/users')
     },
 
-    editUser(id) {
-        return apiClient.patch('/users', id)
+    editUser(id, data) {
+        return apiClient.put('/users/update/' + id, data)
     },
 
     editDevice(deviceId, data) {

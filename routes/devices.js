@@ -12,7 +12,7 @@ router.get('/:userId/:deviceId', controller.getDevice);
 
 router.get('/:userId', controller.getUserDevices);
 
-router.put('/update/:deviceId', controller.editDevice);
+router.put('/update/:deviceId', controller.updateDevice);
 
 router.get('/activate/:userId/:deviceId', controller.activateDevice);
 

@@ -9,9 +9,8 @@ router.get('/', controller.listUsers);
 
 router.post('/', controller.addUser)
 
-router.patch('/:userId', controller.editUser)
+router.put('/update/:userId', controller.editUser)
 
 router.delete('/:userId', controller.deleteUser)
-
 
 module.exports = router;

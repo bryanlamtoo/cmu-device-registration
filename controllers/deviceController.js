@@ -167,13 +167,13 @@ function getRandomNumber(min, max) {
 
 exports.deleteDevice = (req, resp) => {
     console.log(req.params)
-    let deviceId = req.params.id
+    let deviceId = req.params.deviceId
 
     if (deviceId)
         deviceModel.deleteOne({_id: deviceId}).exec((err, res) => {
             if (err) {
                 console.log('Error: ', err)
-                resp.status(404).send()
+                resp.status(500).send('An error occurred, please try again later')
             } else {
                 console.log('Res: ', res)
                 resp.status(200).send('Device successfully deleted')
@@ -182,9 +182,6 @@ exports.deleteDevice = (req, resp) => {
         })
     else
         resp.status(404).json('No device with the specified ID')
-}
-
-exports.updateDevice = (req, res) => {
 }
 
 exports.enableDevice = (req, res) => {
@@ -233,7 +230,7 @@ exports.getUserDevices = (req, res) => {
     })
 }
 
-exports.editDevice = (req, resp) => {
+exports.updateDevice = (req, resp) => {
     let deviceId = req.params.deviceId
 
     deviceModel.updateOne({_id: deviceId}, req.body).exec((err, res) => {
@@ -248,8 +245,6 @@ exports.editDevice = (req, resp) => {
         }
     })
 
-    console.log('REQUEST ', req.params)
-    console.log('REQUEST ', req.body)
 }
 
 exports.activateDevice = (req, res) => {

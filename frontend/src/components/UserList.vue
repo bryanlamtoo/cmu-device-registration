@@ -35,15 +35,20 @@
                         <tbody>
                         <tr v-for="(user, index) in userList" class="odd gradeX">
                             <td>{{++index}}</td>
-                            <td>{{user.firstName}}</td>
-                            <td>{{user.lastName}}</td>
+                            <td>{{user.firstName | capitalize}}</td>
+                            <td>{{user.lastName | capitalize}}</td>
                             <td>{{user.loginId}}</td>
                             <td class="center"> {{user.contact}}</td>
-                            <td class="center">{{user.userClass}}</td>
+                            <td class="center">{{user.userClass | capitalize}}</td>
                             <td class="center">
                                 <div class="col-4"><a data-target="#deleteUserModal" data-toggle="modal"
                                                       href="javascript:void(0)" @click="setUserToDelete(user)"><i
-                                        class="fa fa-trash"></i></a></div>
+                                        class="fa fa-trash"></i></a>
+                                    <a class="m-l-20" data-target="#addUserModal" data-toggle="modal"
+                                       href="javascript:void(0)" @click="setUserToEdit(user)">
+                                        <span class="fa fa-edit"></span>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
@@ -65,17 +70,6 @@
                             <p class="bold">{{userToDelete.firstName}} {{userToDelete.lastName}} ?</p></h4>
                         <br>
                     </div>
-
-                    <!--<div class="modal-body">-->
-                    <!--<div class="row">-->
-                    <!--<div class="col-md-12">-->
-                    <!--<div class="grid-body no-border">-->
-                    <!--<br>-->
-                    <!--<p class="text-center">Are you sure you want to delete </p>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
                     <div class="modal-footer text-center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button @click="deleteUser" data-dismiss="modal" type="button" class="btn btn-primary">Delete
@@ -108,7 +102,7 @@
                                                 <label class="form-label">First Name</label>
                                                 <span class="help">e.g. "John"</span>
                                                 <div class="controls">
-                                                    <input v-model="newUser.firstName" type="text"
+                                                    <input v-model="user.firstName" type="text"
                                                            class="form-control">
                                                 </div>
                                             </div>
@@ -116,7 +110,7 @@
                                                 <label class="form-label">Contact</label>
                                                 <span class="help">e.g. "+250 789 123456"</span>
                                                 <div class="controls">
-                                                    <input v-model="newUser.contact" type="text"
+                                                    <input v-model="user.contact" type="text"
                                                            class="form-control">
                                                 </div>
                                             </div>
@@ -126,7 +120,7 @@
                                                 <label class="form-label">Last Name</label>
                                                 <span class="help">e.g. "Doe"</span>
                                                 <div class="controls">
-                                                    <input type="text" v-model="newUser.lastName"
+                                                    <input type="text" v-model="user.lastName"
                                                            class="form-control">
                                                 </div>
                                             </div>
@@ -135,11 +129,12 @@
                                                 <span class="help">Select from the list</span>
                                                 <div class="controls">
 
-                                                    <select v-model="newUser.userClass" id="source"
+                                                    <select v-model="user.userClass" id="source"
                                                             style="width:100%">
-                                                        <option value="Student">Student</option>
-                                                        <option value="Staff">Staff</option>
-                                                        <option value="Guest">Guest</option>
+                                                        <option value="student">Student</option>
+                                                        <option value="staff">Staff</option>
+                                                        <option value="guest">Guest</option>
+                                                        <option value="admin">Admin</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -151,7 +146,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button @click="saveUser" type="button" class="btn btn-primary">Save changes</button>
+                        <button @click="saveUser" data-dismiss="modal" type="button" class="btn btn-primary">Save
+                            changes
+                        </button>
                     </div>
                 </div>
             </div>
@@ -176,9 +173,10 @@
         data: () => {
 
             return {
-                newUser: {},
+                user: {},
                 userList: [],
-                userToDelete: {}
+                userToDelete: {},
+                isNewUser: true
 
             }
         },
@@ -188,23 +186,38 @@
             saveUser() {
 
                 //Create the login ID
-                this.newUser.loginId = this.newUser.firstName.charAt(0).concat(this.newUser.lastName).toLowerCase();
-                api.addNewUser(this.newUser).then(res => {
-                    this.userList.push(res.data)
-                    this.showNotification('User has been added', 'success')
-                }).catch(err => {
-                    if (err.response)
-                        this.showNotification(err.response.data, 'error')
-                    else
-                        this.showNotification('An error occurred', 'error')
-                })
+                this.user.loginId = this.user.firstName.charAt(0).concat(this.user.lastName).toLowerCase();
+                if (this.isNewUser)
+
+                    api.addNewUser(this.user).then(res => {
+                        this.userList.push(res.data)
+                        this.showNotification('User has been added', 'success')
+                    }).catch(err => {
+                        if (err.response)
+                            this.showNotification(err.response.data, 'error')
+                        else
+                            this.showNotification('An error occurred', 'error')
+                    })
+                else {
+                    api.editUser(this.user._id, this.user).then(res => {
+                        this.getUserList()
+                        this.isNewUser = true
+                        this.showNotification('User updated!', 'success')
+
+                    }).catch(err => {
+                        if (err.response)
+                            this.showNotification(err.response.data, 'error')
+                        else
+                            this.showNotification('An error occurred', 'error')
+
+                    })
+                }
             },
 
             getUserList() {
 
                 //reset the array list
                 this.userList = [];
-
                 api.getUserList().then(res => {
 
                     if (res.data.length > 0) {
@@ -220,6 +233,7 @@
                         this.showNotification('An error occurred', 'error')
                 })
 
+
             },
             deleteUser() {
                 api.deleteUser(this.userToDelete._id).then(res => {
@@ -230,6 +244,10 @@
             setUserToDelete(user) {
                 this.userToDelete = user
             },
+            setUserToEdit(user) {
+                this.isNewUser = false
+                this.user = user
+            },
 
             showNotification(msg, type) {
                 Messenger().post({
@@ -238,6 +256,13 @@
                     showCloseButton: true
                 });
 
+            }
+        },
+        filters: {
+            capitalize: function (value) {
+                if (!value)
+                    return ''
+                return value.charAt(0).toUpperCase() + value.slice(1)
             }
         }
     }

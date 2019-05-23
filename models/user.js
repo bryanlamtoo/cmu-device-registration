@@ -1,13 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const Constants = require('../utils/constants')
 
-const userClassEnum = {
-
-    STUDENT: 'Student',
-    STAFF: 'Staff',
-    DEFAULT: 'Guest',
-    ADMIN: 'Admin'
-}
 
 const userSchema = new Schema({
 
@@ -16,19 +10,21 @@ const userSchema = new Schema({
         required: true
     },
     lastName: {
-        type: String
+        type: String,
+        default: ''
     },
     loginId: {
         type: String,
         required: true
     },
     contact: {
-        type: String
+        type: String,
+        default: ''
     },
 
     userClass: {
         type: String,
-        default: userClassEnum.DEFAULT
+        default: Constants.UserClass.DEFAULT
     },
     password: {
         type: String,
@@ -38,10 +34,10 @@ const userSchema = new Schema({
 
 })
 
-userSchema.index({username: 1})
+userSchema.index({loginId: 1})
 
-userSchema.query.byUserName = function (username) {
-    return this.where({username: new RegExp(username, 'i')});
+userSchema.query.byLoginId = function (loginId) {
+    return this.where({loginId: new RegExp(loginId, 'i')});
 }
 
 userSchema.methods.hasShortPassword = function () {

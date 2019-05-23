@@ -18,5 +18,13 @@ module.exports =
         ConnectionType: {
             WIRED: 'wired',
             WLAN: 'wlan'
+        },
+
+        UserClass: {
+
+            STUDENT: 'student',
+            STAFF: 'staff',
+            DEFAULT: 'guest',
+            ADMIN: 'admin'
         }
     }
