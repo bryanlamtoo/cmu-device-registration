@@ -3,7 +3,8 @@ module.exports =
         DeviceType: {
             PHONE: 'phone',
             TABLET: 'tablet',
-            COMPUTER: "computer",
+            LAPTOP: "laptop",
+            DESKTOP: "desktop",
             OTHER: 'other'
         },
 

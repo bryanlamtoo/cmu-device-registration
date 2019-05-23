@@ -28,86 +28,75 @@
                                 <th>
                                     #
                                 </th>
-                                <th>Device name</th>
-                                <th>Device IMEI</th>
+                                <th>Name</th>
+                                <th>Serial</th>
                                 <th>Mac Address</th>
-                                <th>Device Type</th>
-                                <th>Operating System</th>
+                                <th>Type</th>
+                                <th>Connection</th>
+                                <th>OS</th>
+                                <th>Make</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    1
+                            <tr v-for="(device,index) in deviceList">
+                                <td>{{++index}}</td>
+                                <td>{{device.hostName}}</td>
+                                <td>{{device.serial}}</td>
+                                <td><span>{{device.mac}}</span>
                                 </td>
-                                <td>Iphone 7</td>
-                                <td>869805994009333</td>
-                                <td><span>6a:00:02:7c:5a:81!</span>
-                                </td>
-                                <td>Phone</td>
-                                <td>IOS</td>
+                                <td>{{device.deviceType | capitalize}}</td>
+                                <td>{{device.connectionType | capitalize}}</td>
+                                <td>{{device.os | capitalize}}</td>
+                                <td><a href=""></a> {{device.manufacturer | capitalize}}</td>
                                 <td>
-                                    <span class="label label-info">ACTIVE</span>
+                                    <span v-if="device.enabled" class="label label-success">ACTIVE</span>
+                                    <span v-else class="label label-danger">INACTIVE</span>
 
                                 </td>
                                 <td>
-                                    <span class="fa fa-trash"></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    <div class="inline">Acer E456</div>
+
+                                    <a data-target="#deleteDeviceModal" data-toggle="modal"
+                                       href="javascript:void(0)" @click="setDeviceToDelete(device)">
+                                        <span class="fa fa-trash"></span>
+                                    </a>
+
+                                    <a class="m-l-20" data-target="#myModal" data-toggle="modal"
+                                       href="javascript:void(0)" @click="setDeviceToEdit(device)">
+                                        <span class="fa fa-edit"></span>
+                                    </a>
 
                                 </td>
-                                <td>869805994009333</td>
-                                <td><span>6a:00:02:7c:5a:81</span>
-                                </td>
-                                <td>Tablet</td>
-                                <td>Android</td>
-                                <td>
-                                    <span class="label label-info">ACTIVE</span>
-
-                                </td>
-                                <td><span class="fa fa-trash"></span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    3
-                                </td>
-                                <td>Samsung Tablet</td>
-                                <td>869805994009333</td>
-                                <td><span>6a:00:02:7c:5a:81</span>
-                                </td>
-                                <td>Laptop</td>
-                                <td>Linux</td>
-                                <td>
-                                    <span class="label label-info">ACTIVE</span>
-                                </td>
-                                <td><span class="fa fa-trash"></span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    4
-                                </td>
-                                <td>Macbook pro</td>
-                                <td>869805994009333</td>
-                                <td><span>6a:00:02:7c:5a:81</span>
-                                </td>
-                                <td>Laptop</td>
-                                <td>Mac OSx</td>
-                                <td>
-                                    <span class="label label-default">INACTIVE</span>
-                                </td>
-                                <td><span class="fa fa-trash"></span></td>
                             </tr>
                             </tbody>
                         </table>
                         <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="deleteDeviceModal" tabindex="-1" role="dialog"
+             aria-labelledby="deleteDeviceModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <br>
+                        <span class="fa fa-trash fa-4x"></span>
+                        <h4 id="deleteDeviceModalLabel" class="semi-bold">Are you sure you want to remove the device
+                            <br/><br/>
+                            <p class="bold">{{deviceToDelete.hostName}}?</p></h4>
+                        <br>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button @click="deleteDevice" data-dismiss="modal" type="button" class="btn btn-primary">
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
@@ -138,7 +127,7 @@
                                                 <label class="form-label">Device Name</label>
                                                 <span class="help">e.g. "Windows PC"</span>
                                                 <div class="controls">
-                                                    <input v-model="device.name" type="text" class="form-control">
+                                                    <input v-model="device.hostName" type="text" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -166,7 +155,8 @@
                                                     <select v-model="device.deviceType" id="source" style="width:100%">
                                                         <option value="phone">Phone</option>
                                                         <option value="tablet">Tablet</option>
-                                                        <option value="computer">Computer</option>
+                                                        <option value="laptop">Laptop</option>
+                                                        <option value="desktop">Desktop</option>
                                                         <option value="other">Other</option>
                                                     </select>
                                                 </div>
@@ -244,7 +234,8 @@
                                             <div class="row-fluid">
                                                 <label class="form-label">Activate device</label>
                                                 <div class="slide-primary">
-                                                    <input type="checkbox" name="switch" class="ios" checked="checked"/>
+                                                    <input v-model="device.enabled" type="checkbox" name="switch"
+                                                           class="ios" checked="checked"/>
                                                     <span> Enable this device</span>
                                                 </div>
                                             </div>
@@ -281,7 +272,9 @@
             return {
                 device: {},
                 deviceList: [],
-                currUser: null
+                currUser: {},
+                deviceToDelete: {},
+                isNewDevice: true
             }
         },
         created() {
@@ -290,24 +283,31 @@
         methods: {
 
             saveDevice() {
-
-                console.log(this.device)
                 //set the user ID
                 this.device.userId = this.currUser.id;
-                api.addNewDevice(this.device).then(res => {
-                    console.log(res)
 
-                }).catch(err => {
-
-                    console.log(err)
-                })
+                if (this.isNewDevice)
+                    api.addNewDevice(this.device).then(res => {
+                        console.log(res)
+                        this.getDeviceList()
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                else {
+                    api.editDevice(this.device._id, this.device).then(res => {
+                        console.log(res)
+                        this.getDeviceList()
+                        this.isNewDevice = true
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
             },
 
             getDeviceList() {
                 this.currUser.id = '5ce31954a4378217796b1620'
-                api.getUserDeviceList(res => {
 
-                    console.log(res)
+                api.getUserDeviceList(this.currUser.id).then(res => {
                     this.deviceList = [];
                     if (res.data.length > 0)
                         res.data.forEach(device => {
@@ -319,6 +319,29 @@
                     console.log(err)
                 })
 
+            },
+            setDeviceToDelete(device) {
+                this.deviceToDelete = device;
+            },
+            setDeviceToEdit(device) {
+                this.isNewDevice = false
+                this.device = device
+            },
+
+            deleteDevice() {
+
+                api.deleteDevice(this.deviceToDelete._id).then(res => {
+
+                    console.log(res)
+                    this.getDeviceList();
+                })
+            }
+        },
+        filters: {
+            capitalize: function (value) {
+                if (!value)
+                    return ''
+                return value.charAt(0).toUpperCase() + value.slice(1)
             }
         }
     }

@@ -25,6 +25,10 @@ export default {
         return apiClient.patch('/users', id)
     },
 
+    editDevice(deviceId, data) {
+        return apiClient.put('/devices/update/' + deviceId, data)
+    },
+
     deleteUser(id) {
         return apiClient.delete('/users/' + id)
     },
@@ -35,10 +39,14 @@ export default {
     },
 
     getUserDeviceList(userId) {
-        return apiClient.get('/devices' + userId)
+        return apiClient.get('/devices/' + userId)
     },
 
     getDeviceList() {
         return apiClient.get('/devices')
+    },
+
+    deleteDevice(deviceId) {
+        return apiClient.delete('/devices/' + deviceId)
     }
 }

@@ -26,7 +26,7 @@ exports.addNewDevice = (req, res) => {
                 {
                     mac: req.body.mac,
                     deviceType: req.body.deviceType,
-                    hostName: req.body.name,
+                    hostName: req.body.hostName,
                     dateUpdated: req.body.date,
                     serial: req.body.serial,
                     os: req.body.os,
@@ -167,7 +167,23 @@ function getRandomNumber(min, max) {
 }
 
 
-exports.deleteDevice = (req, res) => {
+exports.deleteDevice = (req, resp) => {
+    console.log(req.params)
+    let deviceId = req.params.id
+
+    if (deviceId)
+        deviceModel.deleteOne({_id: deviceId}).exec((err, res) => {
+            if (err) {
+                console.log('Error: ', err)
+                resp.status(404).send()
+            } else {
+                console.log('Res: ', res)
+                resp.status(200).send('Device successfully deleted')
+
+            }
+        })
+    else
+        resp.status(404).json('No device with the specified ID')
 }
 
 exports.updateDevice = (req, res) => {
@@ -210,11 +226,32 @@ exports.getDevices = (req, res) => {
 exports.getUserDevices = (req, res) => {
     let userId = req.params.userId
 
+    console.log(req.params)
+
     deviceModel.find({userId: userId}).exec((err, results) => {
 
         //Send the results back to the caller
         res.send(results)
     })
+}
+
+exports.editDevice = (req, resp) => {
+    let deviceId = req.params.deviceId
+
+    deviceModel.updateOne({_id: deviceId}, req.body).exec((err, res) => {
+        if (err) {
+            console.log(err)
+            resp.status(400).json(err)
+        } else {
+            console.log(res)
+            deviceModel.findOne({_id: deviceId}).then(res => {
+                resp.status(200).json(res)
+            })
+        }
+    })
+
+    console.log('REQUEST ', req.params)
+    console.log('REQUEST ', req.body)
 }
 
 exports.activateDevice = (req, res) => {

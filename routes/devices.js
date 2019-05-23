@@ -8,9 +8,11 @@ router.delete('/:deviceId', controller.deleteDevice);
 
 router.get('/', controller.getDevices);
 
-router.get('/:userId', controller.getDevice);
+router.get('/:userId/:deviceId', controller.getDevice);
 
 router.get('/:userId', controller.getUserDevices);
+
+router.put('/update/:deviceId', controller.editDevice);
 
 router.get('/activate/:userId/:deviceId', controller.activateDevice);
 

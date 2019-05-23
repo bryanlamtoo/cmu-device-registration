@@ -2290,7 +2290,7 @@ blockquote.pull-right small:after {
   color: #8b91a0 !important;
 }
 .text-success {
-  color: #b00 !important;
+  color: #0aa699 !important;
 }
 .text-info {
   color: #0090d9 !important;
@@ -4797,20 +4797,20 @@ form legend,
   color: #f35958;
 }
 .success-control input {
-  border: 1px solid #b00;
+  border: 1px solid #0aa699;
 }
 .success-control select {
-  border: 1px solid #b00;
+  border: 1px solid #0aa699;
 }
 .success-control textarea {
-  border: 1px solid #b00;
+  border: 1px solid #0aa699;
 }
 .success-control .select2-container .select2-choice {
-  border: 1px solid #b00;
+  border: 1px solid #0aa699;
 }
 .success-control.input-with-icon .select2-container .select2-choice .select2-arrow b:before {
   content: "\f00c";
-  color: #b00;
+  color: #0aa699;
 }
 .success-control.input-with-icon .select2-container .select2-choice .select2-arrow b {
   -webkit-transform: scale(1, 1);
@@ -4820,7 +4820,7 @@ form legend,
   transform: scale(1, 1);
 }
 .success-control i {
-  color: #b00;
+  color: #0aa699;
 }
 .clockpicker-popover {
   z-index: 10;
@@ -5504,7 +5504,7 @@ form legend,
   filter: none;
 }
 .progress-bar-success {
-  background-color: #b00;
+  background-color: #0aa699;
   background-image: none;
 }
 .progress-bar-info {
@@ -5605,7 +5605,7 @@ form legend,
 }
 .label-success,
 .badge-success {
-  background-color: #b00;
+  background-color: #0aa699;
   color: #ffffff;
 }
 .label-warning,
