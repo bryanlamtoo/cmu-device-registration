@@ -288,7 +288,6 @@
 
                 if (this.isNewDevice)
                     api.addNewDevice(this.device).then(res => {
-                        console.log(res)
                         this.getDeviceList()
                     }).catch(err => {
                         console.log(err)
