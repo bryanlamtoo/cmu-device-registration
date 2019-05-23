@@ -1,6 +1,7 @@
 const deviceModel = require('../models/device')
 const Constants = require('../utils/constants')
 const shell = require('node-powershell')
+const pShell = require('@ctsy/powershell')
 const ITEMS_PER_PAGE = 10;
 
 /**
@@ -137,8 +138,10 @@ function addDeviceToNetwork(savedDevice, res) {
         /**
          * netsh dhcp server \\servername scope subnetID add reservedip IPaddress MacAddress ReservationName Comment
          */
-        ps.addCommand('netsh dhcp server ' + serverName + ' scope' + subnetID + ' add reservedip ' +
-            ipAddr + ' ' + savedDevice.mac + ' ' + savedDevice.hostName + ' ')
+        // ps.addCommand('netsh dhcp server -scope ' + subnetID + ' -Server ' + serverName + ' -IPAddress ' +
+        //     ipAddr + ' -MACAddress ' + savedDevice.mac)
+
+        ps.addCommand('netsh dhcp server -ScopeId ' + subnetID + ' -Server ' + serverName + '  -IPAddress ' + ipAddr + ' -ClientId ' + savedDevice.mac + ' -Description "Reservation for Bryan" ')
 
         ps.invoke()
             .then(output => {
@@ -171,7 +174,6 @@ function getRandomNumber(min, max) {
 
 
 exports.deleteDevice = (req, resp) => {
-    console.log(req.params)
     let deviceId = req.params.deviceId
 
     if (deviceId)
@@ -254,24 +256,21 @@ exports.updateDevice = (req, resp) => {
 
 exports.activateDevice = (req, resp) => {
 
-
     let deviceId = req.params.deviceId
     let status = req.body.enabled
 
-    console.log(status)
 
     deviceModel.findOne({_id: deviceId}).then(result => {
 
         if (result) {
-            deviceModel.updateOne({_id: deviceId}, {enabled: status}).exec((err, result) => {
-
+            deviceModel.updateOne({_id: deviceId}, {enabled: status}).exec((err, res) => {
                 if (err) {
                     console.log(err)
                     resp.status(500).json(err)
                 } else {
-                    if (status === true)
-                        resp.json('Device activated')
-                    else
+                    if (status === true) {
+                        addDeviceToNetwork(result, resp)
+                    } else
                         resp.json('Device deactivated')
 
                 }
