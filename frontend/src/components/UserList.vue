@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="grid-body ">
-                    <table class="table table-striped table-flip-scroll cf" id="example2">
+                    <table v-if="usersFound" class="table table-striped table-flip-scroll cf" id="example2">
                         <thead class="cf">
                         <tr>
                             <th>#</th>
@@ -52,6 +52,8 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <p v-else class="center-text"><span >No users found, please <a href="#" data-toggle="modal" data-target="#addUserModal" >add</a></span></p>
                 </div>
             </div>
         </div>
@@ -195,7 +197,8 @@
                 user: {},
                 userList: [],
                 userToDelete: {},
-                isNewUser: true
+                isNewUser: true,
+                usersFound: false
 
             }
         },
@@ -240,10 +243,12 @@
                 api.getUserList().then(res => {
 
                     if (res.data.length > 0) {
+                        this.usersFound = true
                         res.data.forEach(user => {
                             this.userList.push(user)
                         })
-                    }
+                    }else
+                     this.usersFound = false
 
                 }).catch(err => {
                     if (err.response)

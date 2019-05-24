@@ -70,6 +70,10 @@ exports.editUser = (req, resp) => {
     })
 }
 
+/**
+ * Deletes and existing user by id
+ * 
+ */
 exports.deleteUser = (req, resp) => {
     console.log(req.params)
     let id = req.params.userId

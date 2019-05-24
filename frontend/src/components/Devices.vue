@@ -18,7 +18,7 @@
                         <a href="javascript:;" class="reload"></a>
                     </div>
                 </div>
-                <div class="grid-body ">
+                <div v-if="devicesFound" class="grid-body ">
                     <table class="table table-striped table-flip-scroll cf">
                         <thead class="cf">
                         <tr>
@@ -73,6 +73,10 @@
                         </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <div v-else class="grid-body">
+                    <p class="center-text">No devices found, please <a href="" data-toggle="modal" data-target="#myModal" >add</a></p>
                 </div>
             </div>
         </div>
@@ -273,7 +277,8 @@
                 currUser: {},
                 deviceToDelete: {},
                 isNewDevice: true,
-                enableDevice: false
+                enableDevice: false,
+                devicesFound: false
             }
         },
         created() {
@@ -318,10 +323,14 @@
 
                 api.getUserDeviceList(this.currUser.id).then(res => {
                     this.deviceList = [];
-                    if (res.data.length > 0)
+                    if (res.data.length > 0){
+                        this.devicesFound = true
                         res.data.forEach(device => {
                             this.deviceList.push(device)
                         })
+                    }
+                    else 
+                        this.devicesFound = false
 
                 }).catch(err => {
                     if (err.response)

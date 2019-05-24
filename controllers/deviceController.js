@@ -1,14 +1,11 @@
 const deviceModel = require('../models/device')
 const Constants = require('../utils/constants')
 const shell = require('node-powershell')
-const pShell = require('@ctsy/powershell')
 const ITEMS_PER_PAGE = 10;
 
 /**
  * Adds a new device to the database
  *
- * @param req
- * @param res
  */
 exports.addNewDevice = (req, res) => {
     //First make sure the user doesn't already have 3 devices registered
@@ -138,10 +135,12 @@ function addDeviceToNetwork(savedDevice, res) {
         /**
          * netsh dhcp server \\servername scope subnetID add reservedip IPaddress MacAddress ReservationName Comment
          */
+        
         // ps.addCommand('netsh dhcp server -scope ' + subnetID + ' -Server ' + serverName + ' -IPAddress ' +
         //     ipAddr + ' -MACAddress ' + savedDevice.mac)
 
-        ps.addCommand('netsh dhcp server -ScopeId ' + subnetID + ' -Server ' + serverName + '  -IPAddress ' + ipAddr + ' -ClientId ' + savedDevice.mac + ' -Description "Reservation for Bryan" ')
+        //C:\Users\Bryan Lamtoo\Downloads\PROJECTS\cmu-devices\cmu-devices\powershell\register-db_NEW.ps1
+        ps.addCommand('./powershell/register-db_NEW.ps1')
 
         ps.invoke()
             .then(output => {

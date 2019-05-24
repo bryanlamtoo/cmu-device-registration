@@ -3,7 +3,95 @@
   <component name="ChangeListManager">
     <list default="true" id="59158ae8-a4cf-4f35-a8d2-54deb62786b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/deviceController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/deviceController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/assets/img/cmu_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/assets/img/cmu_logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Devices.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Devices.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/node-sass" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/node-sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/info" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/publish-built-version" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/publish-built-version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/travis-gh-pages" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/travis-gh-pages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/LICENSE-jsbn" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/LICENSE-jsbn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/ec.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/ec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/sec.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/sec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/in-install.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/in-install.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/in-publish.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/in-publish.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/not-in-install.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/not-in-install.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/not-in-publish.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/not-in-publish.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mime/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/mkdirp/bin/cmd.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mkdirp/bin/cmd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/nan/tools/1to2.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nan/tools/1to2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/bin/node-gyp.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/bin/node-gyp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/common_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/common_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/input_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/input_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/mac_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/mac_tool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/win_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/win_tool.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/samples/samples" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/samples/samples" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/emacs/run-unit-tests.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/emacs/run-unit-tests.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/graphviz.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/graphviz.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_gyp.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_gyp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_sln.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_sln.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_vcproj.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_vcproj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/node_modules/semver/bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/node_modules/semver/bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/test/docker.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/test/docker.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/bin/emcc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/bin/emcc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/bin/node-sass" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/bin/node-sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/bootstrap" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/bootstrap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/branding" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/branding" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-libsass" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-libsass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-plugin" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-plugin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-compiler" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-compiler" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-deps" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-report-coverage" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-report-coverage" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/spec" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-driver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-driver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-runner" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-runner" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/test-leaks.pl" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/test-leaks.pl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/version.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/version.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-call.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-call.coffee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-require.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-require.coffee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/difference.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/difference.coffee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/initial-value.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/initial-value.coffee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/request/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/request/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rimraf/bin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rimraf/bin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sass-graph/bin/sassgraph" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sass-graph/bin/sassgraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/semver/bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-conv" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-conv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-sign" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-sign" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-verify" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-verify" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/strip-indent/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/strip-indent/cli.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/uuid/bin/uuid" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uuid/bin/uuid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/which/bin/which" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/which/bin/which" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/wrap-ansi/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/wrap-ansi/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/HostRegistration_Jan2019.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/HostRegistration_Jan2019.accdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/Modules/DHCP/Microsoft.DHCP.PowerShell.Admin.psm1" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/DHCP/Microsoft.DHCP.PowerShell.Admin.psm1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DNSShell.dll" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DNSShell.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.Format.ps1xml" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.Format.ps1xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.psd1" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.psd1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.zip" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/en-US/DnsShell.dll-help.xml" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/en-US/DnsShell.dll-help.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/powershell/register-db_NEW.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/register-db_NEW.ps1" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,7 +107,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/devices.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="272">
               <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
             </state>
           </provider>
@@ -28,8 +116,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/Devices.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="340" column="40" selection-start-line="340" selection-start-column="40" selection-end-line="340" selection-end-column="40" />
+            <state relative-caret-position="2822">
+              <caret line="340" selection-start-line="340" selection-end-line="340" />
               <folding>
                 <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#div#3;n#div#0;n#template#0;n#!!top" />
@@ -41,7 +129,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/api/apiServices.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
+            <state relative-caret-position="884">
               <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
             </state>
           </provider>
@@ -50,26 +138,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/userController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="272">
               <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/deviceController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="122" column="43" selection-start-line="122" selection-start-column="28" selection-end-line="122" selection-end-column="43" />
+            <state relative-caret-position="2482">
+              <caret line="146" column="36" selection-start-line="146" selection-start-column="36" selection-end-line="146" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/powershell/register-db_NEW.ps1">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="95" column="114" selection-start-line="95" selection-start-column="104" selection-end-line="95" selection-end-column="114" />
+            <state relative-caret-position="289">
+              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -137,6 +225,7 @@
         <option value="$PROJECT_DIR$/routes/devices.js" />
         <option value="$PROJECT_DIR$/frontend/src/components/Devices.vue" />
         <option value="$PROJECT_DIR$/controllers/deviceController.js" />
+        <option value="$PROJECT_DIR$/powershell/register-db_NEW.ps1" />
       </list>
     </option>
   </component>
@@ -147,9 +236,9 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="734" />
+    <option name="y" value="21" />
+    <option name="width" value="1444" />
+    <option name="height" value="739" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -159,6 +248,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -170,81 +260,6 @@
               <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
               <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="webarch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-powershell" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-powershell" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-powershell" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-powershell" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
@@ -266,25 +281,22 @@
               <item name="cmu-devices" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="cmu-devices" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="11.6.0" />
+    <property name="javascript.nodejs.core.library.configured.version" value="10.15.3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.phonegap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -329,11 +341,14 @@
       <workItem from="1557902647463" duration="2830000" />
       <workItem from="1558330448970" duration="1312000" />
       <workItem from="1558352566436" duration="16712000" />
+      <workItem from="1558688661342" duration="196000" />
+      <workItem from="1558688872717" duration="2951000" />
+      <workItem from="1558692696546" duration="55000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82430000" />
+    <option name="totallyTimeSpent" value="85632000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -345,14 +360,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1646" height="1029" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6426282" visible="true" weight="0.22455573" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6426282" visible="true" weight="0.22409488" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.3573718" side_tool="true" weight="0.24964234" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3410959" />
@@ -363,7 +376,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32876712" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.41917807" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2539185" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -549,9 +563,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/public/assets/js/notifications.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/public/assets/js/notifications.js" />
     <entry file="file://$PROJECT_DIR$/frontend/public/assets/plugins/jquery-notifications/css/location-sel.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -620,45 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/Devices.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="340" column="40" selection-start-line="340" selection-start-column="40" selection-end-line="340" selection-end-column="40" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#div#3;n#div#0;n#template#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/api/apiServices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/devices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/userController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/powershell/register-db_NEW.ps1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="95" column="114" selection-start-line="95" selection-start-column="104" selection-end-line="95" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/node-powershell/docs/tips.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -673,9 +646,7 @@
     <entry file="file://$PROJECT_DIR$/node_modules/node-powershell/example/script-loop.ps1">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@ctsy/powershell/dist/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@ctsy/powershell/dist/index.d.ts" />
     <entry file="file://$PROJECT_DIR$/node_modules/node-powershell/lib/PSCommand.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-658" />
@@ -693,10 +664,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/devices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/Devices.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2822">
+          <caret line="340" selection-start-line="340" selection-end-line="340" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#div#3;n#div#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/api/apiServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/deviceController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="122" column="43" selection-start-line="122" selection-start-column="28" selection-end-line="122" selection-end-column="43" />
+        <state relative-caret-position="2482">
+          <caret line="146" column="36" selection-start-line="146" selection-start-column="36" selection-end-line="146" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/powershell/register-db_NEW.ps1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
         </state>
       </provider>
     </entry>
