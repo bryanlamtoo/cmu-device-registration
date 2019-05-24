@@ -119,7 +119,7 @@ function addDeviceToNetwork(savedDevice, res) {
          * Declare the variables to be used
          */
         let regType;
-        const serverName = '102.133.171.147'
+        const serverName = 'rwn-ad-001.go.illinois.dvp s.local'
         if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
             regType = 52
         else
