@@ -1,6 +1,8 @@
+
 const deviceModel = require('../models/device')
 const Constants = require('../utils/constants')
-const shell = require('node-powershell')
+const Shell = require ('node-powershell')
+const ps = new Shell();
 const ITEMS_PER_PAGE = 10;
 
 /**
@@ -127,20 +129,15 @@ function addDeviceToNetwork(savedDevice, res) {
 
 
         //Initiate the power shell to reserve IP address
-        let ps = new shell({
+        let ps = new Shell({
             executionPolicy: 'Bypass',
             noProfile: true
         })
 
         /**
-         * netsh dhcp server \\servername scope subnetID add reservedip IPaddress MacAddress ReservationName Comment
+         * Invoke the powershel script to reserver the IP address on the server
          */
-        
-        // ps.addCommand('netsh dhcp server -scope ' + subnetID + ' -Server ' + serverName + ' -IPAddress ' +
-        //     ipAddr + ' -MACAddress ' + savedDevice.mac)
-
-        //C:\Users\Bryan Lamtoo\Downloads\PROJECTS\cmu-devices\cmu-devices\powershell\register-db_NEW.ps1
-        ps.addCommand('./powershell/register-db_NEW.ps1')
+        ps.addCommand('./powershell/register-db_NEW.ps1 -IP '+ipAddr+' -mac '+savedDevice.mac+' -subnetId '+subnetID+' -server '+serverName);
 
         ps.invoke()
             .then(output => {

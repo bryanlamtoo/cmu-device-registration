@@ -2,95 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59158ae8-a4cf-4f35-a8d2-54deb62786b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/deviceController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/deviceController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/assets/img/cmu_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/assets/img/cmu_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Devices.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Devices.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/node-sass" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/node-sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/info" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/prepare-tests" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/publish-built-version" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/publish-built-version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ajv/scripts/travis-gh-pages" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/travis-gh-pages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/LICENSE-jsbn" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/LICENSE-jsbn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/ec.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/ec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/sec.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/lib/sec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ecc-jsbn/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ecc-jsbn/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/in-install.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/in-install.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/in-publish.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/in-publish.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/not-in-install.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/not-in-install.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/in-publish/not-in-publish.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/in-publish/not-in-publish.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mime/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mime/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/mkdirp/bin/cmd.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/mkdirp/bin/cmd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nan/tools/1to2.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nan/tools/1to2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/bin/node-gyp.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/bin/node-gyp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/gyp_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/common_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/common_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/easy_xml_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/flock_tool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/generator/msvs_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/input_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/input_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/mac_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/mac_tool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/win_tool.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/pylib/gyp/win_tool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/samples/samples" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/samples/samples" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/emacs/run-unit-tests.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/emacs/run-unit-tests.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/graphviz.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/graphviz.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_gyp.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_gyp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_sln.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_sln.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_vcproj.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/gyp/tools/pretty_vcproj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/node_modules/semver/bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/node_modules/semver/bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-gyp/test/docker.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-gyp/test/docker.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/bin/emcc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/bin/emcc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/bin/node-sass" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/bin/node-sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/bootstrap" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/bootstrap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/branding" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/branding" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-libsass" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-libsass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-plugin" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-plugin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-compiler" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-compiler" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-deps" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-report-coverage" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-report-coverage" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/spec" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-driver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-driver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-runner" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-runner" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/test-leaks.pl" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/test-leaks.pl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/version.sh" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/version.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-call.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-call.coffee" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-require.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/delayed-require.coffee" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/difference.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/difference.coffee" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/initial-value.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/initial-value.coffee" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/request/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/request/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/rimraf/bin.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rimraf/bin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/sass-graph/bin/sassgraph" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sass-graph/bin/sassgraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-conv" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-conv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-sign" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-sign" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-verify" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sshpk/bin/sshpk-verify" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/strip-indent/cli.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/strip-indent/cli.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uuid/bin/uuid" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/uuid/bin/uuid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/which/bin/which" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/which/bin/which" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/wrap-ansi/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/wrap-ansi/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powershell/HostRegistration_Jan2019.accdb" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/HostRegistration_Jan2019.accdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powershell/Modules/DHCP/Microsoft.DHCP.PowerShell.Admin.psm1" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/DHCP/Microsoft.DHCP.PowerShell.Admin.psm1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DNSShell.dll" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DNSShell.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.Format.ps1xml" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.Format.ps1xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.psd1" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.psd1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.zip" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/DnsShell.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/powershell/Modules/Dns/en-US/DnsShell.dll-help.xml" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/Modules/Dns/en-US/DnsShell.dll-help.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/powershell/register-db_NEW.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/powershell/register-db_NEW.ps1" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -235,10 +146,9 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="21" />
-    <option name="width" value="1444" />
-    <option name="height" value="739" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="width" value="2881" />
+    <option name="height" value="1801" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -343,12 +253,12 @@
       <workItem from="1558352566436" duration="16712000" />
       <workItem from="1558688661342" duration="196000" />
       <workItem from="1558688872717" duration="2951000" />
-      <workItem from="1558692696546" duration="55000" />
+      <workItem from="1558692696546" duration="654000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85632000" />
+    <option name="totallyTimeSpent" value="86231000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
