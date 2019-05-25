@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
     <div class="row-fluid">
         <div class="page-title"><i class="icon-custom-left"></i>
@@ -35,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(device,index) in deviceList" class="odd gradeX">
+                        <tr v-for="(device,index) in deviceList" v-bind:key="device._id" class="odd gradeX">
                             <td>{{++index}}</td>
                             <td>{{device.hostName}}</td>
                             <td>{{device.serial}}</td>
@@ -63,7 +64,7 @@
                                 </a>
 
                                 <div class="slide-primary m-l-20">
-                                    <input  v-model="device.enabled" @change="changeDeviceStatus(device)" type="checkbox"
+                                    <input v-model="device.enabled" @change="changeDeviceStatus(device)" type="checkbox"
                                            name="switch"
                                            class="ios" checked="checked"/>
                                 </div>
@@ -76,7 +77,8 @@
                 </div>
 
                 <div v-else class="grid-body">
-                    <p class="center-text">No devices found, please <a href="" data-toggle="modal" data-target="#myModal" >add</a></p>
+                    <p class="center-text">No devices found, please <a href="" data-toggle="modal"
+                                                                       data-target="#myModal">add</a></p>
                 </div>
             </div>
         </div>
@@ -108,6 +110,7 @@
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
+                <!--<form >-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -122,31 +125,52 @@
                             <div class="col-md-12">
 
                                 <div class="grid-body no-border">
+                                    <p class="center-text error" v-if="$v.$error">Please fill the
+                                        form correctly.</p>
+
                                     <br>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Device Name</label>
+                                            <div class="form-group "
+                                                 :class="{ 'error-control': $v.device_name.$error }">
+                                                <label class="form-label">Device Name</label><span class="text-error">*  </span>
                                                 <span class="help">e.g. "Windows PC"</span>
                                                 <div class="controls">
-                                                    <input v-model="device.hostName" type="text" class="form-control">
+                                                    <input v-model.trim="device.hostName" id="device_name"
+                                                           @blur="setDeviceName($event.target.value)" type="text"
+                                                           class="form-control">
+                                                    <p class="error" v-if="$v.device_name.$error ">Device name is
+                                                        required
+                                                    </p>
                                                 </div>
+
+
                                             </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Mac Address</label>
+                                            <div class="form-group" :class="{ 'error-control': $v.mac.$error }">
+                                                <label class="form-label">Mac Address</label><span class="text-error">*  </span>
                                                 <span class="help">e.g. "6a:00:02:7c:5a:81"</span>
                                                 <div class="controls">
-                                                    <input v-model="device.mac" type="text"
+                                                    <input v-model.trim="device.mac" @input="setMac($event.target.value)"
+                                                           type="text"
                                                            class="form-control">
+                                                    <p class="error" v-if="$v.mac.$error">Mac address is
+                                                        required
+                                                    </p>
+                                                    <p class="error" v-if="!$v.mac.macAddress">Invalid Mac Address
+                                                    </p>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label">Serial</label>
-                                                <span class="help">e.g. "XXXXXXXXXXXXXXXXXX"</span>
+                                                <label class="form-label">Serial</label><span class="text-error">*</span>
+                                                <span class="help"> e.g. "XXXXXXXXXXXXXXXXXX"</span>
                                                 <div class="controls">
-                                                    <input type="text" v-model="device.serial" class="form-control">
+                                                    <input @input="setSerial($event.target.value)" type="text" v-model.trim="device.serial" class="form-control">
+                                                    <p class="error" v-if="$v.serial.$error">Serial number is
+                                                        required
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -154,7 +178,8 @@
                                                 <span class="help">Select from the list</span>
                                                 <div class="controls">
 
-                                                    <select v-model="device.deviceType" id="source" style="width:100%">
+                                                    <select v-model="device.deviceType" id="source"
+                                                            style="width:100%">
                                                         <option value="phone">Phone</option>
                                                         <option value="tablet">Tablet</option>
                                                         <option value="laptop">Laptop</option>
@@ -221,7 +246,8 @@
                                                 <span class="help">Select from the list</span>
                                                 <div class="controls">
 
-                                                    <select v-model="device.connectionType" id="ct" style="width:100%">
+                                                    <select v-model="device.connectionType" id="ct"
+                                                            style="width:100%">
                                                         <option value="wlan">WLAN</option>
                                                         <option value="wired">WIRED</option>
                                                     </select>
@@ -250,10 +276,13 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" @click="saveDevice" data-dismiss="modal" class="btn btn-primary">Save
+                        <button type="submit" class="btn btn-primary " @click="saveDevice"
+                                :data-dismiss=" $v.$invalid ? '': 'modal'">Save
                         </button>
+
                     </div>
                 </div>
+                <!--</form>-->
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
@@ -266,6 +295,7 @@
 <script>
 
     import api from '../api/apiServices'
+    import {required, macAddress} from 'vuelidate/lib/validators'
 
     export default {
         name: "Devices",
@@ -278,43 +308,82 @@
                 deviceToDelete: {},
                 isNewDevice: true,
                 enableDevice: false,
-                devicesFound: false
+                devicesFound: false,
+                submitStatus: null,
+                device_name: '',
+                mac: '',
+                serial: ''
+            }
+        },
+        validations: {
+            device_name: {
+                required
+            },
+            mac: {
+                macAddress,
+                required
+            },
+            serial: {
+                required
             }
         },
         created() {
             this.getDeviceList()
         },
         methods: {
+            setDeviceName(value) {
+                this.device_name = value
+                this.$v.device_name.$touch()
+            },
+            setMac(value) {
+                this.mac = value
+                this.$v.mac.$touch()
+            },
+
+            setSerial(value) {
+                this.serial = value
+                this.$v.serial.$touch()
+            },
+
 
             saveDevice() {
-                //set the user ID
-                this.device.userId = this.currUser.id;
 
-                if (this.isNewDevice)
-                    api.addNewDevice(this.device).then(res => {
-                        this.getDeviceList()
-                        this.showNotification('Device has been added', 'success')
-                    }).catch(err => {
+                this.$v.$touch()
+                if (this.$v.$invalid) {
+                    this.submitStatus = 'ERROR'
+                } else {
+                    this.submitStatus = 'OK'
+                    //set the user ID
+                    this.device.userId = this.currUser.id;
+
+                    if (this.isNewDevice)
+                        api.addNewDevice(this.device).then(res => {
+                            this.getDeviceList()
+                            this.showNotification('Device has been added', 'success')
+                        }).catch(err => {
+                                if (err.response)
+                                    this.showNotification(err.response.data, 'error')
+                                else
+                                    this.showNotification('An error occurred', 'error')
+                                this.submitStatus = 'ERROR'
+
+                            }
+                        )
+                    else {
+                        api.editDevice(this.device._id, this.device).then(res => {
+                            this.getDeviceList()
+                            this.isNewDevice = true
+                            this.showNotification('Device updated!', 'success')
+
+                        }).catch(err => {
                             if (err.response)
                                 this.showNotification(err.response.data, 'error')
                             else
                                 this.showNotification('An error occurred', 'error')
+                            this.submitStatus = 'ERROR'
 
-                        }
-                    )
-                else {
-                    api.editDevice(this.device._id, this.device).then(res => {
-                        this.getDeviceList()
-                        this.isNewDevice = true
-                        this.showNotification('Device updated!', 'success')
-
-                    }).catch(err => {
-                        if (err.response)
-                            this.showNotification(err.response.data, 'error')
-                        else
-                            this.showNotification('An error occurred', 'error')
-
-                    })
+                        })
+                    }
                 }
             },
 
@@ -323,13 +392,12 @@
 
                 api.getUserDeviceList(this.currUser.id).then(res => {
                     this.deviceList = [];
-                    if (res.data.length > 0){
+                    if (res.data.length > 0) {
                         this.devicesFound = true
                         res.data.forEach(device => {
                             this.deviceList.push(device)
                         })
-                    }
-                    else 
+                    } else
                         this.devicesFound = false
 
                 }).catch(err => {
