@@ -16,4 +16,6 @@ router.put('/update/:deviceId', controller.updateDevice);
 
 router.put('/status/:deviceId', controller.activateDevice);
 
+router.get('/stats', controller.getDeviceStats);
+
 module.exports = router

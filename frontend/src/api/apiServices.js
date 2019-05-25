@@ -52,5 +52,11 @@ export default {
 
     changeDeviceStatus(deviceId, data) {
         return apiClient.put('devices/status/' + deviceId, data)
+    },
+    getDevicesStats() {
+        return apiClient.get('devices/stats')
+    },
+    getUsersStats() {
+        return apiClient.get('users/stats')
     }
 }

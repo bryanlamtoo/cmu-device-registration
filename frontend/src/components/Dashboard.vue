@@ -35,11 +35,14 @@
                                 <a href="javascript:;" class="remove"></a>
                             </div>
                             <div class="tiles-title"> TOTAL DEVICES</div>
-                            <div class="heading"> <span class="animate-number" data-value="200" data-animation-duration="1000">200</span> </div>
+                            <div class="heading"><span class="animate-number" data-value="200"
+                                                       data-animation-duration="1000">200</span></div>
                             <div class="progress transparent progress-small no-radius">
-                                <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="79%"></div>
+                                <div class="progress-bar progress-bar-white animate-progress-bar"
+                                     data-percentage="79%"></div>
                             </div>
-                            <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; 2% higher <span class="blend">than last month</span></span>
+                            <div class="description"><i class="icon-custom-up"></i><span
+                                    class="text-white mini-description ">&nbsp; 2% higher <span class="blend">than last month</span></span>
                             </div>
                         </div>
                     </div>
@@ -52,12 +55,15 @@
                                 <a href="javascript:;" class="reload"></a>
                                 <a href="javascript:;" class="remove"></a>
                             </div>
-                            <div class="tiles-title"> ACTIVE DEVICES </div>
-                            <div class="heading"><span class="animate-number" data-value="70" data-animation-duration="1200">70</span> </div>
+                            <div class="tiles-title"> ACTIVE DEVICES</div>
+                            <div class="heading"><span class="animate-number" data-value="70"
+                                                       data-animation-duration="1200">70</span></div>
                             <div class="progress transparent progress-white progress-small no-radius">
-                                <div class="progress-bar progress-bar-white animate-progress-bar" data-percentage="45%"></div>
+                                <div class="progress-bar progress-bar-white animate-progress-bar"
+                                     data-percentage="45%"></div>
                             </div>
-                            <div class="description"><i class="icon-custom-up"></i><span class="text-white mini-description ">&nbsp; 5% higher <span class="blend">than last month</span></span>
+                            <div class="description"><i class="icon-custom-up"></i><span
+                                    class="text-white mini-description ">&nbsp; 5% higher <span class="blend">than last month</span></span>
                             </div>
                         </div>
                     </div>
@@ -69,8 +75,26 @@
 </template>
 
 <script>
+
+    import api from '../api/apiServices'
+
     export default {
-        name: "Dashboard"
+        name: "Dashboard",
+        data() {
+            return {
+                deviceList: []
+            }
+        },
+        created() {
+            this.getDeviceStats()
+        },
+        methods: {
+            getDeviceStats() {
+                api.getDevicesStats().then(result => {
+                    console.log(result)
+                })
+            }
+        }
     }
 </script>
 

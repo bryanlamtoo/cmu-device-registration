@@ -1,7 +1,6 @@
-
 const deviceModel = require('../models/device')
 const Constants = require('../utils/constants')
-const Shell = require ('node-powershell')
+const Shell = require('node-powershell')
 const ps = new Shell();
 const ITEMS_PER_PAGE = 10;
 
@@ -137,7 +136,7 @@ function addDeviceToNetwork(savedDevice, res) {
         /**
          * Invoke the powershel script to reserver the IP address on the server
          */
-        ps.addCommand('./powershell/register-db_NEW.ps1 -IP '+ipAddr+' -mac '+savedDevice.mac+' -subnetId '+subnetID+' -server '+serverName);
+        ps.addCommand('./powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + subnetID + ' -server ' + serverName);
 
         ps.invoke()
             .then(output => {
@@ -255,7 +254,6 @@ exports.activateDevice = (req, resp) => {
     let deviceId = req.params.deviceId
     let status = req.body.enabled
 
-
     deviceModel.findOne({_id: deviceId}).then(result => {
 
         if (result) {
@@ -273,5 +271,11 @@ exports.activateDevice = (req, resp) => {
             })
         }
     })
+}
+
+exports.getDeviceStats = (req, res) => {
+
+    let stats = {}
+    // deviceModel.
 }
 
