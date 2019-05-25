@@ -45,7 +45,7 @@ exports.addNewDevice = (req, res) => {
 
                             //If device is enabled, reserve and IP for it
                             if (savedDevice.enabled)
-                                addDeviceToNetwork(savedDevice)
+                                addDeviceToNetwork(savedDevice,res)
                             else
                                 res.status(201).json(savedDevice)
                         }
@@ -55,7 +55,7 @@ exports.addNewDevice = (req, res) => {
     })
 };
 
-function addDeviceToNetwork(savedDevice, res) {
+function addDeviceToNetwork(savedDevice, resp) {
 
     let ipAddr;
     let scope;
@@ -119,7 +119,7 @@ function addDeviceToNetwork(savedDevice, res) {
          * Declare the variables to be used
          */
         let regType;
-        const serverName = 'rwn-ad-001.go.illinois.dvp s.local'
+        const serverName = 'cmu-node-device'
         if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
             regType = 52
         else
@@ -137,20 +137,35 @@ function addDeviceToNetwork(savedDevice, res) {
         /**
          * Invoke the powershel script to reserver the IP address on the server
          */
-        ps.addCommand('./powershell/register-db_NEW.ps1 -IP '+ipAddr+' -mac '+savedDevice.mac+' -subnetId '+subnetID+' -server '+serverName);
+        let cmd = './powershell/register-db_NEW.ps1 -IP '+ipAddr+' -mac '+savedDevice.mac+' -subnetId '+'172.0.0.0'+' -server '+serverName
+        console.log('Command: ',cmd)
+        ps.addCommand(cmd);
 
         ps.invoke()
             .then(output => {
                 console.log(output);
+            
+                deviceModel.updateOne({_id: savedDevice._id},{ipAddr:ipAddr}).exec((err, res)=>{
+                    console.log('SavedDevice',res);
+                   
+                    if (err) {
+                        console.log('Error: ', err)
+                        resp.status(500).send('An error occurred, please try again later')
+                    }else{
 
-                res.status(201).json(savedDevice)
+                    deviceModel.findOne({_id: savedDevice._id}).then(res => {
+                        resp.status(201).json(res)
+                    })
+                    }
+                })
+                
 
             })
             .catch(err => {
                 console.log(err);
                 ps.dispose();
 
-                res.status(501).json(err)
+                resp.status(501).json(err)
             });
 
     })
