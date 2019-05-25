@@ -133,7 +133,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group "
                                                  :class="{ 'error-control': $v.device_name.$error }">
-                                                <label class="form-label">Device Name</label><span class="text-error">*  </span>
+                                                <label class="form-label">Device Name</label><span
+                                                    class="text-error">*  </span>
                                                 <span class="help">e.g. "Windows PC"</span>
                                                 <div class="controls">
                                                     <input v-model.trim="device.hostName" id="device_name"
@@ -147,13 +148,15 @@
 
                                             </div>
                                             <div class="form-group" :class="{ 'error-control': $v.mac.$error }">
-                                                <label class="form-label">Mac Address</label><span class="text-error">*  </span>
+                                                <label class="form-label">Mac Address</label><span
+                                                    class="text-error">*  </span>
                                                 <span class="help">e.g. "6a:00:02:7c:5a:81"</span>
                                                 <div class="controls">
-                                                    <input v-model.trim="device.mac" @input="setMac($event.target.value)"
+                                                    <input v-model.trim="device.mac"
+                                                           @input="setMac($event.target.value)"
                                                            type="text"
                                                            class="form-control">
-                                                    <p class="error" v-if="$v.mac.$error">Mac address is
+                                                    <p class="error" v-if="$v.mac.$error && !$v.mac.required">Mac address is
                                                         required
                                                     </p>
                                                     <p class="error" v-if="!$v.mac.macAddress">Invalid Mac Address
@@ -164,10 +167,12 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label">Serial</label><span class="text-error">*</span>
+                                                <label class="form-label">Serial</label><span
+                                                    class="text-error">*</span>
                                                 <span class="help"> e.g. "XXXXXXXXXXXXXXXXXX"</span>
                                                 <div class="controls">
-                                                    <input @input="setSerial($event.target.value)" type="text" v-model.trim="device.serial" class="form-control">
+                                                    <input @input="setSerial($event.target.value)" type="text"
+                                                           v-model.trim="device.serial" class="form-control">
                                                     <p class="error" v-if="$v.serial.$error">Serial number is
                                                         required
                                                     </p>
@@ -320,7 +325,7 @@
                 required
             },
             mac: {
-                macAddress,
+                macAddress: macAddress(':'),
                 required
             },
             serial: {

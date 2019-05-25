@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59158ae8-a4cf-4f35-a8d2-54deb62786b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Devices.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Devices.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/Devices.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="149" column="85" lean-forward="true" selection-start-line="149" selection-start-column="85" selection-end-line="149" selection-end-column="85" />
+            <state relative-caret-position="579">
+              <caret line="158" column="108" selection-start-line="158" selection-start-column="108" selection-end-line="158" selection-end-column="108" />
               <folding>
                 <element signature="e#17310#17346#0" expanded="true" />
               </folding>
@@ -295,12 +293,12 @@
       <workItem from="1558731798436" duration="651000" />
       <workItem from="1558733343023" duration="2108000" />
       <workItem from="1558777404294" duration="314000" />
-      <workItem from="1558802508359" duration="8550000" />
+      <workItem from="1558802508359" duration="8912000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97894000" />
+    <option name="totallyTimeSpent" value="98256000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -315,7 +313,7 @@
     <frame x="1440" y="-99" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6426282" visible="true" weight="0.2518637" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6426282" visible="true" weight="0.2518637" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.3573718" side_tool="true" weight="0.24964234" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -329,7 +327,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32876712" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2049505" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2049505" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -652,8 +650,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/Devices.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="149" column="85" lean-forward="true" selection-start-line="149" selection-start-column="85" selection-end-line="149" selection-end-column="85" />
+        <state relative-caret-position="579">
+          <caret line="158" column="108" selection-start-line="158" selection-start-column="108" selection-end-line="158" selection-end-column="108" />
           <folding>
             <element signature="e#17310#17346#0" expanded="true" />
           </folding>
