@@ -13,6 +13,10 @@ const apiClient = axios.create({
 
 export default {
 
+    loginUser(data) {
+        return apiClient.post('/auth/login', data)
+    },
+
     addNewUser(data) {
         return apiClient.post('/users', data)
     },

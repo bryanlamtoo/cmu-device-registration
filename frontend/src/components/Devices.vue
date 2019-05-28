@@ -115,8 +115,8 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         <br>
-                        <i class="fa fa-credit-card fa-7x"></i>
-                        <h4 id="myModalLabel" class="semi-bold">Please note that you can only</h4>
+                        <i class="fa fa-laptop fa-7x"></i>
+                        <h4 id="myModalLabel" class="semi-bold">Please note that you can only add</h4>
                         <p class="no-margin">upto the 3 devices </p>
                         <br>
                     </div>
@@ -135,7 +135,7 @@
                                                  :class="{ 'error-control': $v.device_name.$error }">
                                                 <label class="form-label">Device Name</label><span
                                                     class="text-error">*  </span>
-                                                <span class="help">e.g. "Windows PC"</span>
+                                                <span class="help">e.g. "WindowsPC"</span>
                                                 <div class="controls">
                                                     <input v-model.trim="device.hostName" id="device_name"
                                                            @blur="setDeviceName($event.target.value)" type="text"

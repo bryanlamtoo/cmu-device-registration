@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -15,6 +16,8 @@
     "morgan": "~1.9.0",
     "node-powershell": "^4.0.0",
     "node-sass-middleware": "0.11.0",
+    "swagger-jsdoc": "^3.2.9",
+    "swagger-ui-express": "^4.0.5",
     "tar": "^4.4.8",
     "vuelidate": "^0.7.4"
   }

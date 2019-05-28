@@ -1,17 +1,43 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-// var sassMiddleware = require('node-sass-middleware');
-var mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
 const cors = require('cors')
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const devicesRouter = require('./routes/devices');
+const app = express();
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express');
 
+const swaggerDefinition = {
+    info: {
+        title: 'Device Registration API',
+        version: '1.0.0',
+        description: 'Endpoints to test the device registration routes',
+    },
+    host: 'localhost:4000',
+    basePath: '/',
+    securityDefinitions: {
+        bearerAuth: {
+            type: 'apiKey',
+            name: 'Authorization',
+            scheme: 'bearer',
+            in: 'header',
+        },
+    },
+};
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var devicesRouter = require('./routes/devices');
+const options = {
+    swaggerDefinition,
+    apis: ['./routes/*.js'],
+};
 
-var app = express();
+const swaggerSpec = swaggerJSDoc(options);
+
+// Uncomment and change value to either development, production, testing or staging to test
+// process.env.NODE_ENV = 'production'
 
 
 app.use(logger('dev'));
@@ -19,37 +45,16 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-// app.use(sassMiddleware({
-//     src: path.join(__dirname, 'public'),
-//     dest: path.join(__dirname, 'public'),
-//     indentedSyntax: true, // true = .sass and false = .scss
-//     sourceMap: true
-// }));
-
 app.use('/api/v1/', indexRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/devices', devicesRouter);
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 /************************************************
  *      DATABASE Connection                     *
  ************************************************/
-mongoose.connect("mongodb+srv://esn_admin:esn_admin@esn-nn2md.mongodb.net/device_reg?retryWrites=true",
-{
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }, (err) => {
-    if (!err) {
-      console.log('Database connected successfully')
-    } else {
-      console.log('Error in database connection: ' + err)
-    }
-  })
-//mongoose.connect("mongodb://localhost:27017/devices_reg");
-var db = mongoose.connection
-db.on('error', console.error.bind(console, 'Connection error'));
-db.once('open', function () {
-    console.log('Database Connected');
-})
+
+// Initialize the db
+require('./db/db')
 
 
 /************************************************
@@ -59,21 +64,21 @@ db.once('open', function () {
 var debug = require('debug')('cmu-devices:server');
 var http = require('http');
 
-if (process.env.NODE_ENV === 'production'){
+app.use(express.static(path.join(__dirname, 'public')));
 
-    app.use(express.static(path.join(__dirname, 'public')));
-    
+if (process.env.NODE_ENV === 'production') {
+
     //Handle Single Page Application
-    app.get(/.*/, (req,res)=> res.sendFile(path.join(__dirname,'public/index.html')))
+    app.get(/.*/, (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')))
 }
 
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '4000');
+const port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 
 /**

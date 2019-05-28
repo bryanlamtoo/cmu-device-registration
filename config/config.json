@@ -1,0 +1,14 @@
+{
+  "development": {
+    "config_id": "development",
+    "database": "mongodb://localhost:27017/device_reg"
+  },
+  "production": {
+    "config_id": "production",
+    "database": "mongodb+srv://esn_admin:esn_admin@esn-nn2md.mongodb.net/device_reg?retryWrites=true"
+  },
+  "test": {
+    "config_id": "test",
+    "database": ""
+  }
+}

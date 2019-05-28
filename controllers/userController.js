@@ -60,7 +60,7 @@ exports.editUser = (req, resp) => {
     User.updateOne({_id: userId}, req.body).exec((err, res) => {
         if (err) {
             console.log(err)
-            resp.status(400).json(err)
+            resp.status(404).json("The specified user does not exist")
         } else {
             console.log(res)
             User.findOne({_id: userId}).then(res => {
@@ -72,7 +72,7 @@ exports.editUser = (req, resp) => {
 
 /**
  * Deletes and existing user by id
- * 
+ *
  */
 exports.deleteUser = (req, resp) => {
     console.log(req.params)
