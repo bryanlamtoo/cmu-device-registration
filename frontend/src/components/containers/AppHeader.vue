@@ -114,7 +114,7 @@
                                 <!--</li>-->
                                 <li class="divider"></li>
                                 <li>
-                                    <router-link to="/logout"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</router-link>
+                                    <router-link to="/signin"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</router-link>
                                 </li>
                             </ul>
                         </li>

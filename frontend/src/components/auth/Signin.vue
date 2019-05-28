@@ -1,12 +1,16 @@
 <template>
-    <div data-original="assets/img/work.jpg" class="row login-container animated fadeInUp">
+    <div class="row login-container animated fadeInUp">
         <div class="col-md-7 col-md-offset-2 tiles white no-padding">
             <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10">
                 <h2 class="normal">
                     Sign in to Device Manager
+                    <div class="pull-right m-r-30">
+                        <img width="250" src="assets/img/cmu_africa.png">
+                    </div>
                 </h2>
+
                 <p>
-                    Use your andrewId to sign in.
+                    Use your <span class="bold" style="color: #b00"> andrewId</span> to sign in.
                     <br>
                 </p>
 
@@ -53,6 +57,7 @@
             return {
                 username: '',
                 password: '',
+                image: 'assets/img/work.jpg'
             }
         },
         methods: {
@@ -73,8 +78,14 @@
     }
 </script>
 
-<style scoped>
+<style>
     body {
-
+        background-image: url('../../../public/assets/img/bg-seal.png');
+        background-position: 20% center;
+        background-repeat: repeat space;
+        background-color: #b00;
+        background-size: 10%;
     }
+
+
 </style>
