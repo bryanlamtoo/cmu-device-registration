@@ -239,11 +239,11 @@
             getUserList() {
 
                 //reset the array list
-                this.userList = [];
                 api.getUserList().then(res => {
 
                     if (res.data.length > 0) {
                         this.usersFound = true
+                        this.userList = [];
                         res.data.forEach(user => {
                             this.userList.push(user)
                         })

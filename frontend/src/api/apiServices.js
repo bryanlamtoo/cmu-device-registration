@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const server = 'http://localhost:4000/api/v1/'
+const server = 'api/v1/'
 
 const apiClient = axios.create({
     baseURL: server,

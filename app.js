@@ -25,7 +25,6 @@ app.use(cookieParser());
 //     indentedSyntax: true, // true = .sass and false = .scss
 //     sourceMap: true
 // }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/', indexRouter);
 app.use('/api/v1/users', usersRouter);
@@ -60,10 +59,17 @@ db.once('open', function () {
 var debug = require('debug')('cmu-devices:server');
 var http = require('http');
 
+if (process.env.NODE_ENV === 'production'){
+
+    app.use(express.static(path.join(__dirname, 'public')));
+    
+    //Handle Single Page Application
+    app.get(/.*/, (req,res)=> res.sendFile(path.join(__dirname,'public/index.html')))
+}
+
 /**
  * Get port from environment and store in Express.
  */
-
 var port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 

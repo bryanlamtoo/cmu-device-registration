@@ -5,6 +5,7 @@ import Devices from "@/components/Devices";
 import Page404 from "@/components/pages/Page404";
 import UserList from "../components/UserList";
 import Dashboard from "../components/Dashboard";
+import Signin from "../components/auth/Signin";
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ export default new Router({
                     name: 'Manage Users'
                 },
             ]
+        },
+        {
+            path: '/signin',
+            component: Signin,
+            name: 'Sign in'
         },
 
         {

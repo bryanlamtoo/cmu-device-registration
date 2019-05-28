@@ -29,7 +29,7 @@ const deviceSchema = new Schema({
     },
     serial: {
         type: String,
-        default: ''
+        required: true
     },
 
     os: {
