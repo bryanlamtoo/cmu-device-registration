@@ -17,14 +17,14 @@
             </div>
             <div class="tiles grey p-t-20 p-b-20 no-margin text-black tab-content">
                 <div role="tabpanel" class="tab-pane active" id="tab_login">
-                    <form class="animated fadeIn validate" id="" name="">
+                    <form v-on:submit.prevent="onSubmit" class="animated fadeIn validate" id="" name="">
                         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
                             <div class="col-md-6 col-sm-6">
-                                <input class="form-control" id="login_username" name="login_username"
+                                <input autocomplete="false" class="form-control" id="login_username" name="login_username"
                                        placeholder="Username" type="text" required>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <input class="form-control" id="login_pass" name="login_pass" placeholder="Password"
+                                <input autocomplete="false" class="form-control" id="login_pass" name="login_pass" placeholder="Password"
                                        type="password" required>
                             </div>
                         </div>
@@ -51,6 +51,8 @@
 </template>
 
 <script>
+    import api from './axios-auth'
+
     export default {
         name: "signin",
         data() {
@@ -68,7 +70,7 @@
                     password: this.password,
                     returnSecureToken: true
                 }
-                api.createAccount(formData).then(res => {
+                api.signInUser(formData).then(res => {
 
                     console.log(res)
                 })

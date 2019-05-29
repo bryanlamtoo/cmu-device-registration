@@ -39,6 +39,23 @@ router.post('/', controller.addUser)
  */
 router.get('/', controller.listUsers);
 
+/**
+ * @swagger
+ * /users/statistics:
+ *   get:
+ *     tags:
+ *       - Users
+ *     name: Get User statistics
+ *     summary: Get user statistics in the system (e.g. total
+ *     security:
+ *       - Authorization: []
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: OK
+ */
+router.get('/statistics', controller.getUserStats);
 
 /**
  * @swagger

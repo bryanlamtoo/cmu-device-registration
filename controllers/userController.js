@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const moment = require('moment')
 
 exports.addUser = (req, resp) => {
 
@@ -88,4 +89,58 @@ exports.deleteUser = (req, resp) => {
 
         }
     })
+}
+
+exports.getUserStats = (req, resp) => {
+    let stats = {}
+
+    return User.count().then(result => {
+        //append the total number of users found
+        stats.totalUsers = result
+
+        return User.aggregate([{
+            $group: {
+                _id: {
+                    month: {$month: "$dateAdded"},
+                    year: {$year: "$dateAdded"}
+                },
+                count: {$sum: 1},
+                date: {$first: "$dateAdded"}
+
+            }
+
+        },
+            {
+                $project:
+                    {
+                        date:
+                            {
+                                $dateToString: {format: "%Y-%m", date: "$date"}
+                            },
+                        count: 1,
+                        _id: 0
+                    }
+            }
+        ])
+    }).then(res => {
+
+        const thisMonthDate = moment().format('Y-MM')
+        const lastMonthDate = moment(thisMonthDate).subtract(1, 'months').format('Y-MM')
+
+        res.forEach(data => {
+
+            if (data.date === thisMonthDate)
+                stats.usersThisMonth = data.count
+            else if (data.date === lastMonthDate)
+                stats.usersLastMonth = data.count
+        })
+
+     resp.json(stats)
+
+    }).catch(err=>{
+        console.log(err)
+
+        resp.status(500).json('An unexpected error occured')
+    })
+
 }

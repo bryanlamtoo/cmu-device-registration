@@ -11,7 +11,7 @@ const instance = axios.create({
 
 export default {
 
-    createAccount(data) {
+    signInUser(data) {
 
         return instance.post('/verifyCustomToken?key=AIzaSyAGKgwwFbccaEoUcfYraGfJjqEcYenUIts', data)
     }

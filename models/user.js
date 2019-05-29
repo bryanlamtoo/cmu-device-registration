@@ -51,6 +51,10 @@ const userSchema = new Schema({
         type: String,
         default: ''
     },
+    dateAdded: {
+        type: Date,
+        default: Date.now
+    },
 
     userClass: {
         type: String,

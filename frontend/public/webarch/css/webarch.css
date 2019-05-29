@@ -5950,9 +5950,13 @@ form legend,
 .tiles.blue {
   background-color: #0090d9;
 }
-.tiles.green {
+.tiles.cmu {
   background-color: #b00;
 }
+.tiles.green {
+  background-color: #0aa699;
+}
+
 .tiles.black {
   background-color: #22262e;
 }

@@ -41,6 +41,24 @@ router.get('/', controller.getDevices);
 
 /**
  * @swagger
+ * /devices/statistics:
+ *   get:
+ *     tags:
+ *       - Devices
+ *     name: Get Device statistics
+ *     summary: Get device statistics in the system (e.g. total
+ *     security:
+ *       - Authorization: []
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: OK
+ */
+router.get('/statistics', controller.getDeviceStats);
+
+/**
+ * @swagger
  * /devices/{userId}/{deviceId}:
  *   get:
  *     tags:
@@ -93,24 +111,6 @@ router.get('/:userId', controller.getUserDevices);
  */
 router.put('/update/:deviceId', controller.updateDevice);
 
-
-/**
- * @swagger
- * /devices/stats:
- *   get:
- *     tags:
- *       - Devices
- *     name: Get Device statistics
- *     summary: Get device statistics in the system (e.g. total
- *     security:
- *       - Authorization: []
- *     produces:
- *       - application/json
- *     responses:
- *       '200':
- *         description: OK
- */
-router.get('/stats', controller.getDeviceStats);
 
 /**
  * @swagger

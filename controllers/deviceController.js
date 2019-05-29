@@ -1,8 +1,9 @@
 const deviceModel = require('../models/device')
 const Constants = require('../utils/constants')
-const Shell = require ('node-powershell')
+const Shell = require('node-powershell')
 const ps = new Shell();
 const ITEMS_PER_PAGE = 10;
+const moment = require('moment')
 
 /**
  * Adds a new device to the database
@@ -24,7 +25,8 @@ exports.addNewDevice = (req, res) => {
                     mac: req.body.mac,
                     deviceType: req.body.deviceType,
                     hostName: req.body.hostName,
-                    dateUpdated: req.body.date,
+                    dateUpdated: req.body.dateUpdated,
+                    dateAdded: req.body.dateAdded,
                     serial: req.body.serial,
                     os: req.body.os,
                     manufacturer: req.body.manufacturer,
@@ -44,7 +46,7 @@ exports.addNewDevice = (req, res) => {
 
                             //If device is enabled, reserve and IP for it
                             if (savedDevice.enabled)
-                                addDeviceToNetwork(savedDevice,res)
+                                addDeviceToNetwork(savedDevice, res)
                             else
                                 res.status(201).json(savedDevice)
                         }
@@ -136,25 +138,25 @@ function addDeviceToNetwork(savedDevice, resp) {
         /**
          * Invoke the powershel script to reserver the IP address on the server
          */
-        let cmd = './powershell/register-db_NEW.ps1 -IP '+ipAddr+' -mac '+savedDevice.mac+' -subnetId '+'172.0.0.0'+' -server '+serverName
-        console.log('Command: ',cmd)
+        let cmd = './powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + '172.0.0.0' + ' -server ' + serverName
+        console.log('Command: ', cmd)
         ps.addCommand(cmd);
 
         ps.invoke()
             .then(output => {
                 console.log(output);
 
-                deviceModel.updateOne({_id: savedDevice._id},{ipAddr:ipAddr}).exec((err, res)=>{
-                    console.log('SavedDevice',res);
+                deviceModel.updateOne({_id: savedDevice._id}, {ipAddr: ipAddr}).exec((err, res) => {
+                    console.log('SavedDevice', res);
 
                     if (err) {
                         console.log('Error: ', err)
                         resp.status(500).send('An error occurred, please try again later')
-                    }else{
+                    } else {
 
-                    deviceModel.findOne({_id: savedDevice._id}).then(res => {
-                        resp.status(201).json(res)
-                    })
+                        deviceModel.findOne({_id: savedDevice._id}).then(res => {
+                            resp.status(201).json(res)
+                        })
                     }
                 })
 
@@ -235,17 +237,6 @@ exports.getDevices = (req, res) => {
 
 }
 
-exports.getUserDevices = (req, res) => {
-    let userId = req.params.userId
-
-    console.log(req.params)
-
-    deviceModel.find({userId: userId}).exec((err, results) => {
-
-        //Send the results back to the caller
-        res.send(results)
-    })
-}
 
 exports.updateDevice = (req, resp) => {
     let deviceId = req.params.deviceId
@@ -288,9 +279,100 @@ exports.activateDevice = (req, resp) => {
     })
 }
 
-exports.getDeviceStats = (req, res) => {
+exports.getUserDevices = (req, res) => {
+    let userId = req.params.userId
+
+    console.log('Got here', req.params)
+
+    deviceModel.find({userId: userId}).exec((err, results) => {
+
+        //Send the results back to the caller
+        res.send(results)
+    })
+}
+
+exports.getDeviceStats = (req, resp) => {
 
     let stats = {}
-    // deviceModel.
+
+    return deviceModel.count()
+        .then(res => {
+
+            //Append the total count of devices
+            stats.totalDevices = res;
+
+            return deviceModel.aggregate([{
+                $group: {
+                    _id: {
+                        month: {$month: "$dateAdded"},
+                        year: {$year: "$dateAdded"}
+                    },
+                    count: {$sum: 1},
+                    date: {$first: "$dateAdded"}
+
+                }
+
+            },
+                {
+                    $project:
+                        {
+                            date:
+                                {
+                                    $dateToString: {format: "%Y-%m", date: "$date"}
+                                },
+                            count: 1,
+                            _id: 0
+                        }
+                }
+            ])
+        }).then(res => {
+
+            const thisMonthDate = moment().format('Y-MM')
+            const lastMonthDate = moment(thisMonthDate).subtract(1, 'months').format('Y-MM')
+
+            res.forEach(data => {
+
+                if (data.date === thisMonthDate)
+                    stats.devicesThisMonth = data.count
+                else if (data.date === lastMonthDate)
+                    stats.devicesLastMonth = data.count
+            })
+
+            return deviceModel.aggregate([
+                {
+                    $group: {
+                        _id: "$enabled", count: {$sum: 1}, active: {$first: "$enabled"}
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0
+                    }
+                }
+            ])
+
+
+        }).then(res => {
+
+            res.forEach(data => {
+
+                if (data.active === true)
+                    stats.totalActiveDevices = data.count
+                else if (data.active === false)
+                    stats.totalInactiveDevices = data.count
+
+            })
+            
+            console.log('Stats: ', stats)
+
+            resp.json(stats)
+
+        }).catch(err => {
+            console.log(err)
+
+            resp.status(500).json('An unexpected error occurred, please try again later')
+        })
+
+
 }
 

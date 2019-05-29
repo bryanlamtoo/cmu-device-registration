@@ -55,12 +55,12 @@ export default {
     },
 
     changeDeviceStatus(deviceId, data) {
-        return apiClient.put('devices/status/' + deviceId, data)
+        return apiClient.put('/devices/status/' + deviceId, data)
     },
     getDevicesStats() {
-        return apiClient.get('devices/stats')
+        return apiClient.get('/devices/statistics')
     },
     getUsersStats() {
-        return apiClient.get('users/stats')
+        return apiClient.get('/users/statistics')
     }
 }
