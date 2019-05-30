@@ -362,8 +362,6 @@ exports.getDeviceStats = (req, resp) => {
                     stats.totalInactiveDevices = data.count
 
             })
-            
-            console.log('Stats: ', stats)
 
             resp.json(stats)
 
@@ -374,5 +372,27 @@ exports.getDeviceStats = (req, resp) => {
         })
 
 
+}
+
+exports.getRecentlyAdded = (req, res) => {
+
+    return deviceModel.aggregate([
+        {
+            $sort: {dateAdded: 1}
+        },
+        {
+            $limit: 5
+        }
+    ]).then(result => {
+
+        console.log(result)
+
+        res.json(result)
+
+    }).catch(err => {
+        console.log(err)
+
+        res.status(500).json("An un expected error has occurred")
+    })
 }
 

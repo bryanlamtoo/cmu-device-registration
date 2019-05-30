@@ -57,6 +57,25 @@ router.get('/', controller.getDevices);
  */
 router.get('/statistics', controller.getDeviceStats);
 
+
+/**
+ * @swagger
+ * /devices/recent:
+ *   get:
+ *     tags:
+ *       - Devices
+ *     name: Get Device statistics
+ *     summary: Get device statistics in the system (e.g. total
+ *     security:
+ *       - Authorization: []
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: OK
+ */
+router.get('/recent', controller.getRecentlyAdded);
+
 /**
  * @swagger
  * /devices/{userId}/{deviceId}:

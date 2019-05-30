@@ -62,5 +62,18 @@ export default {
     },
     getUsersStats() {
         return apiClient.get('/users/statistics')
+    },
+
+    getRecentlyAddedDevices(){
+        return apiClient.get('/devices/recent')
+    },
+
+    getRecentlyLoggedIn(){
+
+        return apiClient.get('/users/recent')
+    },
+
+    signInUser(userData){
+        return apiClient.post('/auth/login', userData)
     }
 }

@@ -20,11 +20,13 @@
                     <form v-on:submit.prevent="onSubmit" class="animated fadeIn validate" id="" name="">
                         <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
                             <div class="col-md-6 col-sm-6">
-                                <input autocomplete="false" class="form-control" id="login_username" name="login_username"
+                                <input autocomplete="false" v-model="username" class="form-control" id="login_username"
+                                       name="login_username"
                                        placeholder="Username" type="text" required>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <input autocomplete="false" class="form-control" id="login_pass" name="login_pass" placeholder="Password"
+                                <input autocomplete="false" v-model="password" class="form-control" id="login_pass" name="login_pass"
+                                       placeholder="Password"
                                        type="password" required>
                             </div>
                         </div>
@@ -51,7 +53,6 @@
 </template>
 
 <script>
-    import api from './axios-auth'
 
     export default {
         name: "signin",
@@ -66,14 +67,15 @@
             onSubmit() {
 
                 let formData = {
-                    email: this.username,
+                    username: this.username,
                     password: this.password,
                     returnSecureToken: true
                 }
-                api.signInUser(formData).then(res => {
 
+                this.$store.dispatch('login', formData).then(res => {
                     console.log(res)
                 })
+
             }
 
         }

@@ -113,8 +113,9 @@
                                     <!--</a>-->
                                 <!--</li>-->
                                 <li class="divider"></li>
-                                <li>
-                                    <router-link to="/signin"><i class="material-icons">power_settings_new</i>&nbsp;&nbsp;Log Out</router-link>
+                                <li v-if="isAuthenticated">
+                                    <!--<router-link to="/signin">&nbsp;&nbsp;Log Out</router-link>-->
+                                    <a href="#" @click.prevent="logout"><i class="material-icons">power_settings_new</i> Log out</a>
                                 </li>
                             </ul>
                         </li>
@@ -145,7 +146,13 @@
 
 <script>
     export default {
-        name: "AppHeader"
+        name: "AppHeader",
+        data(){
+            return {
+                isAuthenticated: false
+
+            }
+        }
     }
 </script>
 

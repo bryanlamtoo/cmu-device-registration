@@ -18,5 +18,6 @@ const controller = require('../controllers/authController')
  *       '200':
  *         description: OK
  */
-router.post('/', controller.loginUser);
+router.post('/login', controller.loginUser);
 
+module.exports = router

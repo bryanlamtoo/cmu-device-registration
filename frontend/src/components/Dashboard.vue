@@ -43,7 +43,8 @@
                                      data-percentage="79%"></div>
                             </div>
                             <div class="description"><i class="icon-custom-up"></i><span
-                                    class="text-white mini-description ">&nbsp; {{percentageIncreaseDevices}}% higher <span class="blend">than last month</span></span>
+                                    class="text-white mini-description ">&nbsp; {{percentageIncreaseDevices}}% higher <span
+                                    class="blend">than last month</span></span>
                             </div>
                         </div>
                     </div>
@@ -79,7 +80,7 @@
                                 <a href="javascript:;" class="reload"></a>
                                 <a href="javascript:;" class="remove"></a>
                             </div>
-                            <div class="tiles-title"> THIS MONTH</div>
+                            <div class="tiles-title"> DEVICES THIS MONTH</div>
                             <div class="heading"><span class="animate-number" :data-value="deviceStats.devicesThisMonth"
                                                        data-animation-duration="1000">{{deviceStats.devicesThisMonth}}</span>
                             </div>
@@ -108,12 +109,20 @@
         data() {
             return {
                 deviceStats: {},
-                userStats: {}
+                userStats: {},
+                recentDevices: {},
             }
         },
-        created() {
+        // mounted() {
+        //     window.addEventListener('unload', this.getDeviceStats)
+        // },
+        // beforeDestroy(){
+        //     window.removeEventListener('unload', this.getDeviceStats)
+        // },
+        async created() {
             this.getDeviceStats()
             this.getUserStats()
+            this.getRecentDevices()
         },
         methods: {
             getDeviceStats() {
@@ -127,7 +136,17 @@
             getUserStats() {
                 api.getUsersStats().then(result => {
                     if (result.data) {
+                        console.log(result.data)
                         this.userStats = result.data
+                    }
+
+                })
+            },
+            getRecentDevices() {
+                api.getRecentlyAddedDevices().then(result => {
+                    if (result.data) {
+                        // console.log(result)
+                        this.recentDevices = result.data
                     }
 
                 })

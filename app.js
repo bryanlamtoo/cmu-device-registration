@@ -7,6 +7,7 @@ const cors = require('cors')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const devicesRouter = require('./routes/devices');
+const authRouter = require('./routes/auth');
 const app = express();
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express');
@@ -48,6 +49,7 @@ app.use(cookieParser());
 app.use('/api/v1/', indexRouter);
 app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/devices', devicesRouter);
+app.use('/api/v1/auth', authRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 /************************************************
  *      DATABASE Connection                     *
