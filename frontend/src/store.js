@@ -18,15 +18,8 @@ export default new VueX.Store({
     },
     actions: {
         login({commit}, authData) {
-            console.log('Login Data ', authData)
 
-            return api.signInUser(authData).then(result => {
-
-                commit('authUser',{
-                    token: result.data.token,
-                    userId: result.data.userId
-                })
-            })
+            return api.signInUser(authData)
         }
     },
     getters: {}

@@ -25,7 +25,8 @@
                                        placeholder="Username" type="text" required>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <input autocomplete="false" v-model="password" class="form-control" id="login_pass" name="login_pass"
+                                <input autocomplete="false" v-model="password" class="form-control" id="login_pass"
+                                       name="login_pass"
                                        placeholder="Password"
                                        type="password" required>
                             </div>
@@ -72,9 +73,30 @@
                     returnSecureToken: true
                 }
 
-                this.$store.dispatch('login', formData).then(res => {
-                    console.log(res)
+                this.$store.dispatch('login', formData).then(result => {
+
+                    this.$store.commit('authUser', {
+                        token: result.data.token,
+                        userId: result.data.userId
+                    })
+
+                    console.log(result)
+                    this.showNotification(result.data.msg, 'success')
+
+
+                }).catch(err => {
+                    console.log(err.response)
+                    this.showNotification(err.response.data.msg, 'error')
+
                 })
+
+            },
+            showNotification(msg, type) {
+                Messenger().post({
+                    message: msg,
+                    type: type,
+                    showCloseButton: true
+                });
 
             }
 

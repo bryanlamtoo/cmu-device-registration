@@ -24,12 +24,19 @@ exports.loginUser = (req, res) => {
     //Try to bind/authenticate the user on the active directory the search for the user details in the directory
     ldapClient.bind(loginId, password, function (err) {
 
+        let msg = {}
+
         if (err) {
 
-            if (err.name === 'InvalidCredentialsError')
-                res.status(401).json("Login failed, Invalid Credentials " + err);
-            else
-                res.status(401).json("Unknown Error Occurred")
+            if (err.name === 'InvalidCredentialsError') {
+                msg.msg = 'Login failed, Invalid Credentials'
+                msg.error = err
+                res.status(401).json(msg);
+            } else {
+                msg.msg = 'Unknown Error Occurred'
+                msg.error = null
+                res.status(401).json(msg)
+            }
             return;
 
         } else {
@@ -68,8 +75,8 @@ exports.loginUser = (req, res) => {
             })
         }
 
-        req.session.isLoggedIn = true
-        res.json("Log on successful");
+        // req.session.isLoggedIn = true
+        // res.json("Log on successful");
     })
 }
 
