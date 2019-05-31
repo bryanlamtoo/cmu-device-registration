@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
+require('./config/config.js')
 const cookieParser = require('cookie-parser');
+const session = require('express-session')
+const MongoDBSessionStore = require('connect-mongodb-session')(session)
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors')
@@ -11,6 +14,7 @@ const authRouter = require('./routes/auth');
 const app = express();
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express');
+
 
 const swaggerDefinition = {
     info: {
@@ -57,7 +61,16 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Initialize the db
 require('./db/db')
+let connectionString = global.gConfig.database
+let appSecret = global.gConfig.appSecret
 
+const store = new MongoDBSessionStore({
+    uri: connectionString,
+    collection: 'sessions'
+})
+
+//Initialize the session object
+app.use(session({secret: appSecret, resave: false, saveUninitialized: false, store: store}))
 
 /************************************************
  *      Setting up the Server                   *

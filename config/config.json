@@ -1,11 +1,13 @@
 {
   "development": {
     "config_id": "development",
-    "database": "mongodb://localhost:27017/device_reg"
+    "database": "mongodb://localhost:27017/device_reg",
+    "appSecret": "2OpPZoSmdwDZq0S5sgQOayWjjDh60S7s"
   },
   "production": {
     "config_id": "production",
-    "database": "mongodb+srv://esn_admin:esn_admin@esn-nn2md.mongodb.net/device_reg?retryWrites=true"
+    "database": "mongodb+srv://esn_admin:esn_admin@esn-nn2md.mongodb.net/device_reg?retryWrites=true",
+    "appSecret": "2OpPZoSmdwDZq0S5sgQOayWjjDh60S7s"
   },
   "test": {
     "config_id": "test",

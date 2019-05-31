@@ -20,4 +20,22 @@ const controller = require('../controllers/authController')
  */
 router.post('/login', controller.loginUser);
 
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     name: Log out the user
+ *     summary: Log out the user
+ *     security:
+ *       - Authorization: []
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: OK
+ */
+router.post('/logout', controller.logoutUser);
+
 module.exports = router

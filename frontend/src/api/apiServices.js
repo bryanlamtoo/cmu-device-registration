@@ -64,16 +64,20 @@ export default {
         return apiClient.get('/users/statistics')
     },
 
-    getRecentlyAddedDevices(){
+    getRecentlyAddedDevices() {
         return apiClient.get('/devices/recent')
     },
 
-    getRecentlyLoggedIn(){
+    getRecentlyLoggedIn() {
 
         return apiClient.get('/users/recent')
     },
 
-    signInUser(userData){
+    signInUser(userData) {
         return apiClient.post('/auth/login', userData)
+    },
+
+    signOutUser() {
+        apiClient.post('/auth/logout')
     }
 }
