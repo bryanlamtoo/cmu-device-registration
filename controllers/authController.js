@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const ldapOptions = {
-    url: 'ldap://20.127.2.44',
+    url: 'ldap://40.127.2.44:389',
     // url: 'ldap://cmu-r.cmu.local',
     connectTimeout: 30000,
     reconnect: true
@@ -34,10 +34,15 @@ exports.loginUser = (req, res) => {
 
         if (user === null || user.length === 0) {
 
+            console.log('Initializing ldap connection ...')
+
+
             //Try to bind/authenticate the user on the active directory the search for the user details in the directory
             ldapClient.bind(loginId, password, function (err) {
 
                 let msg = {}
+
+                console.log('Error: ',err)
 
                 if (err) {
 
