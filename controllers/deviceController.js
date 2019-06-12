@@ -120,7 +120,8 @@ function addDeviceToNetwork(savedDevice, resp) {
          * Declare the variables to be used
          */
         let regType;
-        const serverName = 'cmu-r.cmu.local'
+        // const serverName = 'cmu-r.cmu.local'
+        const serverName = '40.127.2.44'
         if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
             regType = 2
         else

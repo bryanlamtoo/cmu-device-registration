@@ -1,7 +1,7 @@
 {
   "development": {
     "config_id": "development",
-    "database": "mongodb://localhost:27017/device_reg",
+    "database": "mongodb+srv://esn_admin:esn_admin@esn-nn2md.mongodb.net/device_reg?retryWrites=true",
     "appSecret": "2OpPZoSmdwDZq0S5sgQOayWjjDh60S7s"
   },
   "production": {
