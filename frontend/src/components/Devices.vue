@@ -430,7 +430,8 @@
             changeDeviceStatus(device) {
 
                 api.changeDeviceStatus(device._id, device).then(res => {
-
+                    console.log(res)
+                    
                     this.showNotification(res.data, 'success')
 
                 }).catch(err => {
