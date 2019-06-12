@@ -41,8 +41,8 @@ exports.loginUser = (req, res) => {
                 executionPolicy: 'Bypass',
                 noProfile: true
             })
-            
-            let cmd = './powershell/Get-DHCPLeases.ps1 -IP'
+
+            let cmd = './powershell/Get-DHCPLeases.ps1'
             console.log('Command: ', cmd)
             ps.addCommand(cmd);
 

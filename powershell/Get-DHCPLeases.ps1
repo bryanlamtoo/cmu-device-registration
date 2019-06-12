@@ -14,15 +14,15 @@
 
 $DHCP_SERVER = "cmu-r.cmu.local" # The DHCP Server Name
 
-$LOG_FOLDER = "D:\DHCP" # A Folder to save all the Logs
+$LOG_FOLDER = "D:/DHCP" # A Folder to save all the Logs
 
 # Create Log File Paths
 
-$ScopeLog = $LOG_FOLDER + "\ScopeLog.csv"
+$ScopeLog = $LOG_FOLDER + "/ScopeLog.csv"
 
-$LeaseLog = $LOG_FOLDER + "\LeaseLog.csv"
+$LeaseLog = $LOG_FOLDER + "/LeaseLog.csv"
 
-$ReservedLog = $LOG_FOLDER + "\ReservedLog.csv"
+$ReservedLog = $LOG_FOLDER + "/ReservedLog.csv"
 
 
 
@@ -443,11 +443,11 @@ Foreach ($ScopeAddress in $ScopesIP.Address)
 
 # Export all data to XML Files for  later review
 
-$LeaseClients | Export-Clixml -Path $LOG_FOLDER"\Clients.xml"
+$LeaseClients | Export-Clixml -Path $LOG_FOLDER"/Clients.xml"
 
-$LeaseReserved | Export-Clixml -Path $LOG_FOLDER"\Reserved.xml"
+$LeaseReserved | Export-Clixml -Path $LOG_FOLDER"/Reserved.xml"
 
-$Scope | Export-Clixml -Path $LOG_FOLDER"\Scope.xml"
+$Scope | Export-Clixml -Path $LOG_FOLDER"/Scope.xml"
 
 
 
