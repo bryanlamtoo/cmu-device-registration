@@ -43,7 +43,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 // Uncomment and change value to either development, production, testing or staging to test
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'production'
 
 /************************************************
  *      DATABASE Connection                     *
