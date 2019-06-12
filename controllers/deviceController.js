@@ -164,7 +164,7 @@ function addDeviceToNetwork(savedDevice, resp) {
 
             })
             .catch(err => {
-                console.log(err);
+                console.log('DHCP Error',err);
                 ps.dispose();
 
                 resp.status(501).json(err)
