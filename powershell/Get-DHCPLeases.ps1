@@ -12,7 +12,7 @@
 
 
 
-$DHCP_SERVER = "cmu-r.cmu.local" # The DHCP Server Name
+$DHCP_SERVER = "rwn-ad-001.go.illinois.dvp s.local" # The DHCP Server Name
 
 $LOG_FOLDER = "D:/DHCP" # A Folder to save all the Logs
 

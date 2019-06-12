@@ -62,9 +62,9 @@ function addDeviceToNetwork(savedDevice, resp) {
     let dScope;
 
     if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
-        scope = '42.127.2'
+        scope = '172.29.53'
     else
-        scope = '42.127.1'
+        scope = '172.29.52'
 
     dScope = scope.concat('.0')
 
@@ -81,7 +81,7 @@ function addDeviceToNetwork(savedDevice, resp) {
         if (count <= 240) {  //if less than 240 addresses are in use, process this block of code
             do {
                 //first half of scope - 221 addresses max
-                let octet = getRandomNumber(45, 240) //generate random number for last octet
+                let octet = getRandomNumber(17, 240) //generate random number for last octet
                 let proposedIp = scope + '.' + octet
                 ipAddr = proposedIp
 
@@ -119,14 +119,15 @@ function addDeviceToNetwork(savedDevice, resp) {
          * Declare the variables to be used
          */
         let regType;
-        const serverName = 'cmu-r.cmu.local'
+        const serverName = 'rwn-ad-001.go.illinois.dvp s.local'
+        // const serverName = 'cmu-r.cmu.local'
         // const serverName = '40.127.2.44'
         if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
-            regType = 2
+            regType = 52
         else
-            regType = 1
+            regType = 54
 
-        let subnetID = '42.127.' + regType + '.0'
+        let subnetID = '172.29' + regType + '.0'
 
 
         //Initiate the power shell to reserve IP address
@@ -138,7 +139,7 @@ function addDeviceToNetwork(savedDevice, resp) {
         /**
          * Invoke the powershel script to reserver the IP address on the server
          */
-        let cmd = './powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + '42.0.0.0' + ' -server ' + serverName
+        let cmd = './powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + subnetID + ' -server ' + serverName
         console.log('Command: ', cmd)
         ps.addCommand(cmd);
 
