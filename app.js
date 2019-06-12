@@ -14,6 +14,7 @@ const authRouter = require('./routes/auth');
 const app = express();
 const swaggerJSDoc = require('swagger-jsdoc')
 const swaggerUi = require('swagger-ui-express');
+const isAuth = require('./middleware/is-auth')
 
 
 const swaggerDefinition = {
@@ -44,17 +45,6 @@ const swaggerSpec = swaggerJSDoc(options);
 // Uncomment and change value to either development, production, testing or staging to test
 process.env.NODE_ENV = 'development'
 
-
-app.use(logger('dev'));
-app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use('/api/v1/', indexRouter);
-app.use('/api/v1/users', usersRouter);
-app.use('/api/v1/devices', devicesRouter);
-app.use('/api/v1/auth', authRouter);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 /************************************************
  *      DATABASE Connection                     *
  ************************************************/
@@ -69,8 +59,37 @@ const store = new MongoDBSessionStore({
     collection: 'sessions'
 })
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+        'Access-Control-Allow-Methods',
+        'OPTIONS, GET, POST, PUT, PATCH, DELETE'
+    );
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
 //Initialize the session object
 app.use(session({secret: appSecret, resave: false, saveUninitialized: false, store: store}))
+
+app.use(logger('dev'));
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use('/api/v1/', indexRouter);
+app.use('/api/v1/users', isAuth, usersRouter);
+app.use('/api/v1/devices', isAuth, devicesRouter);
+app.use('/api/v1/auth', authRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.use((error, req, res, next) => {
+    console.log(error);
+    const status = error.statusCode || 500;
+    const message = error.message;
+    const data = error.data;
+    res.status(status).json({ message: message, data: data });
+});
 
 /************************************************
  *      Setting up the Server                   *
@@ -167,6 +186,9 @@ function onListening() {
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
+
+    //Insert the admin into the DB
+
 }
 
 

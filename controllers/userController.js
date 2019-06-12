@@ -1,29 +1,45 @@
 const User = require('../models/user')
 const moment = require('moment')
+const bcrypt = require('bcryptjs')
 
 exports.addUser = (req, resp) => {
 
-    console.log(req.body)
-    let user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        loginId: req.body.loginId,
-        contact: req.body.contact,
-        userClass: req.body.userClass,
-        password: req.body.password
-    });
+    let password = req.body.password
+    let loginId = req.body.loginId
 
-    User.findOne({loginId: user.loginId}).then(res => {
+
+    User
+        .findOne({loginId: loginId}).then(res => {
 
         if (res) {
             resp.status(403).json('User with the login ID already exists')
         } else {
-            //save the new user
-            user.save((err, newUser) => {
-                if (err)
-                    console.log(err);
-                resp.status(201).json(newUser)
-            })
+
+            bcrypt.genSalt(10, function (err, salt) {
+                bcrypt.hash(password, salt, function (err, hash) {
+                    // Store hash in your password DB.
+
+                    let user = new User({
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName,
+                        loginId: loginId,
+                        userClass: req.body.userClass,
+                        password: hash
+                    });
+
+                    //save the new user
+                    user.save((err, newUser) => {
+                        if (err) {
+                            resp.status(500).json('Saving user failed')
+
+                            console.log(err);
+                        }
+                        resp.status(201).json(newUser)
+                    })
+                });
+            });
+
+
         }
     })
 
@@ -32,7 +48,6 @@ exports.addUser = (req, resp) => {
 
 exports.listUsers = (req, res) => {
     User.find((err, users) => {
-
         res.status(200).json(users)
     })
 }
@@ -135,9 +150,9 @@ exports.getUserStats = (req, resp) => {
                 stats.usersLastMonth = data.count
         })
 
-     resp.json(stats)
+        resp.json(stats)
 
-    }).catch(err=>{
+    }).catch(err => {
         console.log(err)
 
         resp.status(500).json('An unexpected error occured')

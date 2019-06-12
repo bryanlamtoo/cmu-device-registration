@@ -1,82 +1,135 @@
 const User = require('../models/user')
 const ldap = require('ldapjs')
-
+const Constants = require('../utils/constants')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const ldapOptions = {
-    url: 'ldap://cmu-r.cmu.local',
+    url: 'ldap://20.127.2.44',
+    // url: 'ldap://cmu-r.cmu.local',
     connectTimeout: 30000,
     reconnect: true
 };
 
 const ldapClient = ldap.createClient(ldapOptions);
+
+
 exports.loginUser = (req, res) => {
+    console.log('Attempting user login...')
+
     const result = {};    // To send back to the client
 
     let username = req.body.username;
     let password = req.body.password;
-    let domain = 'cmu.local'
-
+    let domain = 'cmu.local' //The server DNS domain name
 
     let loginId = username + '@' + domain
 
-    console.log(req.body)
 
-    //Try to bind/authenticate the user on the active directory the search for the user details in the directory
-    ldapClient.bind(loginId, password, function (err) {
-
-        let msg = {}
+    User.findOne().byLoginId(username).exec(function (err, user) {
 
         if (err) {
+            return res.status(500).json('An unexpected error occurred')
+        }
 
-            if (err.name === 'InvalidCredentialsError') {
-                msg.msg = 'Login failed, Invalid Credentials'
-                msg.error = err
-                res.status(401).json(msg);
-            } else {
-                msg.msg = 'Unknown Error Occurred'
-                msg.error = null
-                res.status(401).json(msg)
-            }
-            return;
+        if (user === null || user.length === 0) {
+
+            //Try to bind/authenticate the user on the active directory the search for the user details in the directory
+            ldapClient.bind(loginId, password, function (err) {
+
+                let msg = {}
+
+                if (err) {
+
+                    if (err.name === 'InvalidCredentialsError') {
+                        msg.msg = 'Login failed, Invalid Credentials'
+                        msg.error = err
+                        res.status(401).json(msg);
+                    } else {
+                        msg.msg = 'Unknown Error Occurred'
+                        msg.error = null
+                        res.status(401).json(msg)
+                    }
+                    return;
+
+                } else {
+
+                    /**
+                     * OU = Organizational Uni
+                     * DC = Domain Component
+                     * CN = Common Name
+                     */
+                    const suffix = 'ou=cmu, dc=cmu, dc =local'
+                    ldapClient.search(suffix, {
+                        scope: 'sub',
+                        filter: '(sAMAccountName=' + username + ')'
+
+                    }, function (err, searchRes) {
+
+                        if (err !== 'undefined') {
+                            msg.msg = 'User details not found'
+                            msg.error = null
+
+                            res.status(404).json(msg)
+
+                            return;
+                        }
+
+                        //when we get a result that is the user data
+                        searchRes.on('searchEntry', function (entry) {
+
+
+                            user.username = entry.object.sAMAccountName
+                            user.email = entry.object.userPrincipalName
+                            user.firstName = entry.object.givenName
+                            user.lastName = entry.object.sn
+                            user.name = entry.object.name
+
+                            let appSecret = global.gConfig.appSecret
+                            const token = jwt.sign({
+                                username: user.username,
+                                userId: user.email
+                            }, appSecret, {expiresIn: '1h'})
+
+
+                            // req.session.isLoggedIn = true
+                            // req.session.authUser = user
+                            res.status(200).json({token: token, user: user})
+
+                        })
+
+                        searchRes.on("error", (err) => {
+                            res.json('User not found');
+                        });
+
+                    })
+                }
+            })
 
         } else {
 
-            const suffix = 'dc=cmu-r'
-            ldapClient.search(suffix, {
-                scope: 'sub',
-                filter: '(userPrincipalName=' + username + ')'
+            console.log('Found local account');
 
-            }, function (err, searchRes) {
+            bcrypt.compare(password, user.password).then(doMatch => {
 
-                if (err !== 'undefined') {
-                    res.json('LDAP search error')
-                    return;
-                }
+                if (doMatch) {
+                    let appSecret = global.gConfig.appSecret
+                    const token = jwt.sign({
+                        username: user.username,
+                        userId: user._id
+                    }, appSecret, {expiresIn: '1h'})
 
-                //when we get a result that is the user data
-                searchRes.on('searchEntry', function (entry) {
+                    res.status(200).json({token: token, user: user})
 
-                    console.log('Found User', entry)
-                    let groups = entry.object.memberOf
-
-                    //We want to handle a string (single value) as an array
-                    if (typeof groups === 'string')
-                        groups = [groups]
-
-                    result.groups = groups
-
-                })
-
-                searchRes.on("error", (err) => {
-                    // result += "Search failed with " + err;
-                    res.json(err);
-                });
+                } else
+                    res.status(401).json('Invalid Credentials')
+            }).catch(err => {
+                console.log(err)
+                res.status(401).json('Error Occurred')
 
             })
-        }
 
-        // req.session.isLoggedIn = true
-        // res.json("Log on successful");
+        }
     })
 }
 

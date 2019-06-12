@@ -63,9 +63,9 @@ function addDeviceToNetwork(savedDevice, resp) {
     let dScope;
 
     if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
-        scope = '52.172.53'
+        scope = '42.127.2'
     else
-        scope = '52.172.52'
+        scope = '42.127.1'
 
     dScope = scope.concat('.0')
 
@@ -82,7 +82,7 @@ function addDeviceToNetwork(savedDevice, resp) {
         if (count <= 240) {  //if less than 240 addresses are in use, process this block of code
             do {
                 //first half of scope - 221 addresses max
-                let octet = getRandomNumber(17, 240) //generate random number for last octet
+                let octet = getRandomNumber(45, 240) //generate random number for last octet
                 let proposedIp = scope + '.' + octet
                 ipAddr = proposedIp
 
@@ -122,11 +122,11 @@ function addDeviceToNetwork(savedDevice, resp) {
         let regType;
         const serverName = 'cmu-r.cmu.local'
         if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
-            regType = 52
+            regType = 2
         else
-            regType = 54
+            regType = 1
 
-        let subnetID = '52.172.' + regType + '.0'
+        let subnetID = '42.127.' + regType + '.0'
 
 
         //Initiate the power shell to reserve IP address
@@ -138,7 +138,7 @@ function addDeviceToNetwork(savedDevice, resp) {
         /**
          * Invoke the powershel script to reserver the IP address on the server
          */
-        let cmd = './powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + '52.0.0.0' + ' -server ' + serverName
+        let cmd = './powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + '42.0.0.0' + ' -server ' + serverName
         console.log('Command: ', cmd)
         ps.addCommand(cmd);
 
