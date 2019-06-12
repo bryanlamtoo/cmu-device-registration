@@ -69,24 +69,34 @@
 
                 let formData = {
                     username: this.username,
-                    password: this.password,
-                    returnSecureToken: true
+                    password: this.password
                 }
 
                 this.$store.dispatch('login', formData).then(result => {
 
                     this.$store.commit('authUser', {
                         token: result.data.token,
-                        userId: result.data.userId
+                        user: result.data.user
                     })
-
                     console.log(result)
-                    this.showNotification(result.data.msg, 'success')
+
+
+                    if (result.data.msg)
+                        this.showNotification(result.data.msg, 'success')
+                    else {
+                        this.showNotification('Successfully logged in', 'success')
+                        this.$router.replace('/')
+                        // this.$router.push('/')
+                    }
 
 
                 }).catch(err => {
-                    console.log(err.response)
-                    this.showNotification(err.response.data.msg, 'error')
+                    console.log(err)
+                    if (err.response.data.msg)
+                        this.showNotification(err.response.data.msg, 'error')
+                    else
+                        this.showNotification('An error occurred', 'error')
+
 
                 })
 

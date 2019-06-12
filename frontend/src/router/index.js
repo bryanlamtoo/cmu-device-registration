@@ -6,6 +6,7 @@ import Page404 from "@/components/pages/Page404";
 import UserList from "../components/UserList";
 import Dashboard from "../components/Dashboard";
 import Signin from "../components/auth/Signin";
+import store from '../store'
 
 Vue.use(Router)
 
@@ -36,12 +37,24 @@ export default new Router({
                     component: UserList,
                     name: 'Manage Users'
                 },
-            ]
+            ],
+            beforeEnter(to, from, next) {
+                if (store.state.idToken) {
+                    next()
+                } else
+                    next('/signin')
+            }
         },
         {
             path: '/signin',
             component: Signin,
-            name: 'Sign in'
+            name: 'Sign in',
+            beforeEnter(to, from, next) {
+                if (store.state.idToken) {
+                    next('/')
+                } else
+                    next()
+            }
         },
 
         {

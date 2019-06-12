@@ -294,6 +294,12 @@ exports.getUserDevices = (req, res) => {
 exports.getDeviceStats = (req, resp) => {
 
     let stats = {}
+    stats.totalActiveDevices = 0
+    stats.totalDevices = 0
+    stats.devicesThisMonth = 0
+    stats.devicesLastMonth = 0
+    stats.totalInactiveDevices = 0
+
 
     return deviceModel.count()
         .then(res => {

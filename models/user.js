@@ -47,10 +47,6 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    contact: {
-        type: String,
-        default: ''
-    },
     dateAdded: {
         type: Date,
         default: Date.now

@@ -156,7 +156,8 @@
                                                            @input="setMac($event.target.value)"
                                                            type="text"
                                                            class="form-control">
-                                                    <p class="error" v-if="$v.mac.$error && !$v.mac.required">Mac address is
+                                                    <p class="error" v-if="$v.mac.$error && !$v.mac.required">Mac
+                                                        address is
                                                         required
                                                     </p>
                                                     <p class="error" v-if="!$v.mac.macAddress">Invalid Mac Address
@@ -366,9 +367,12 @@
                             this.getDeviceList()
                             this.showNotification('Device has been added', 'success')
                         }).catch(err => {
-                                if (err.response)
-                                    this.showNotification(err.response.data, 'error')
-                                else
+                                if (err.response) {
+                                    if (err.response.status === 401)
+                                        this.showNotification('Unauthorized access', 'error')
+                                    else
+                                        this.showNotification(err.response.data, 'error')
+                                } else
                                     this.showNotification('An error occurred', 'error')
                                 this.submitStatus = 'ERROR'
 
@@ -406,9 +410,12 @@
                         this.devicesFound = false
 
                 }).catch(err => {
-                    if (err.response)
-                        this.showNotification(err.response.data, 'error')
-                    else
+                    if (err.response) {
+                        if (err.response.status === 401)
+                            this.showNotification('Unauthorized access', 'error')
+                        else
+                            this.showNotification(err.response.data, 'error')
+                    } else
                         this.showNotification('An error occurred', 'error')
                 })
 

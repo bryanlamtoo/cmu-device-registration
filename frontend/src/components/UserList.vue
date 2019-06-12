@@ -26,7 +26,6 @@
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Login ID</th>
-                            <th>Contact</th>
                             <th>User Class</th>
                             <th>Action</th>
                         </tr>
@@ -37,7 +36,6 @@
                             <td>{{user.firstName | capitalize}}</td>
                             <td>{{user.lastName | capitalize}}</td>
                             <td>{{user.loginId}}</td>
-                            <td class="center"> {{user.contact}}</td>
                             <td class="center">{{user.userClass | capitalize}}</td>
                             <td class="center">
                                 <div class="col-4"><a data-target="#deleteUserModal" data-toggle="modal"
@@ -53,7 +51,9 @@
                         </tbody>
                     </table>
 
-                    <p v-else class="center-text"><span >No users found, please <a href="#" data-toggle="modal" data-target="#addUserModal" >add</a></span></p>
+                    <p v-else class="center-text"><span>No users found, please <a href="#" data-toggle="modal"
+                                                                                  data-target="#addUserModal">add</a></span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -96,70 +96,106 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="grid-body no-border">
+                                    <p class="center-text error" v-if="$v.$error">Please fill the
+                                        form correctly.</p>
                                     <br>
                                     <!--<div class="row">-->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">First Name</label>
-                                                    <span class="help">e.g. "John"</span>
-                                                    <div class="controls">
-                                                        <input v-model="user.firstName" type="text"
-                                                               class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">Last Name</label>
-                                                    <span class="help">e.g. "Doe"</span>
-                                                    <div class="controls">
-                                                        <input type="text" v-model="user.lastName"
-                                                               class="form-control">
-                                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">First Name</label>
+                                                <span class="help">e.g. "John"</span>
+                                                <div class="controls">
+                                                    <input v-model="user.firstName" type="text"
+                                                           class="form-control">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">Contact</label>
-                                                    <span class="help">e.g. "+250 789 123456"</span>
-                                                    <div class="controls">
-                                                        <input v-model="user.contact" type="text"
-                                                               class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">LoginId</label>
-                                                    <span class="help">e.g. "jdhoe"</span>
-                                                    <div class="controls">
-                                                        <input v-model="user.loginId" type="text"
-                                                               class="form-control">
-                                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Last Name</label>
+                                                <span class="help">e.g. "Doe"</span>
+                                                <div class="controls">
+                                                    <input type="text" v-model="user.lastName"
+                                                           class="form-control">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">User Class</label>
-                                                    <span class="help">Select from the list</span>
-                                                    <div class="controls">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Username</label><span
+                                                    class="text-error">*  </span>
+                                                <span class="help">e.g. "jdhoe"</span>
+                                                <div class="controls">
+                                                    <input @blur="setLoginId($event.target.value)"
+                                                           v-model="user.loginId" type="text"
+                                                           class="form-control">
+                                                    <p class="error" v-if="$v.loginId.$error && !$v.loginId.required">
+                                                        Username is
+                                                        required
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                                        <select v-model="user.userClass" id="source"
-                                                                style="width:100%">
-                                                            <option value="student">Student</option>
-                                                            <option value="staff">Staff</option>
-                                                            <option value="guest">Guest</option>
-                                                            <option value="admin">Admin</option>
-                                                        </select>
-                                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">User Class</label>
+                                                <span class="help">Select from the list</span>
+                                                <div class="controls">
+
+                                                    <select v-model="user.userClass" id="source"
+                                                            style="width:100%">
+                                                        <option value="student">Student</option>
+                                                        <option value="staff">Staff</option>
+                                                        <option value="guest">Guest</option>
+                                                        <option value="admin">Admin</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group" :class="{ 'error-control': $v.password.$error }">
+                                                <label class="form-label">Password </label><span
+                                                    class="text-error">*  </span>
+                                                <div class="controls">
+
+                                                    <input @blur="setPassword($event.target.value)" id="password"
+                                                           name="password" v-model="user.password"
+                                                           type="password"
+                                                           class="form-control">
+                                                    <p class="error" v-if="$v.password.$error && !$v.password.required">
+                                                        Password is
+                                                        required
+                                                    </p>
+                                                    <p class="error" v-if="!$v.password.minLength">Password must have at
+                                                        least {{ $v.password.$params.minLength.min }} letters.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group"
+                                                 :class="{ 'error-control': $v.confirmPassword.$error }">
+                                                <label class="form-label">Confirm Password </label>
+                                                <div class="controls">
+
+                                                    <input id="confirmPassword" name="confirmPassword"
+                                                           @blur="setConfirmPassword($event.target.value)"
+                                                           v-model="user.confirmPassword" type="password"
+                                                           class="form-control">
+                                                    <p class="error" v-if="!$v.confirmPassword.sameAsPassword ">
+                                                        Passwords do not match
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!--</div>-->
                                 </div>
                             </div>
@@ -167,7 +203,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button @click="saveUser" data-dismiss="modal" type="button" class="btn btn-primary">Save
+                        <button type="submit" @click="saveUser" :data-dismiss=" $v.$invalid ? '': 'modal'"
+                                class="btn btn-primary">Save
                             changes
                         </button>
                     </div>
@@ -182,6 +219,8 @@
 
 <script>
     import api from '../api/apiServices'
+    import {required, sameAs, minLength} from 'vuelidate/lib/validators'
+
 
     export default {
         name: "UserList",
@@ -198,41 +237,84 @@
                 userList: [],
                 userToDelete: {},
                 isNewUser: true,
-                usersFound: false
+                usersFound: false,
+                submitStatus: null,
+                password: '',
+                confirmPassword: '',
+                loginId: ''
 
+            }
+        },
+        validations: {
+            loginId: {
+                required,
+            },
+            password: {
+                required,
+                minLength: minLength(6)
+            },
+            confirmPassword: {
+                sameAsPassword: sameAs('password')
             }
         },
 
         methods: {
+            setPassword(value) {
+                this.password = value
+                this.$v.password.$touch()
+            },
+            setConfirmPassword(value) {
+                this.confirmPassword = value
+                this.$v.confirmPassword.$touch()
+            },
+
+            setLoginId(value) {
+                this.loginId = value
+                this.$v.loginId.$touch()
+            },
 
             saveUser() {
+                this.$v.$touch()
+                if (this.$v.$invalid) {
+                    this.submitStatus = 'ERROR'
+                } else {
+                    this.submitStatus = 'OK'
+                    //Create the login ID
+                    // this.user.loginId = this.user.firstName.charAt(0).concat(this.user.lastName).toLowerCase();
+                    if (this.isNewUser) {
 
-                //Create the login ID
-                // this.user.loginId = this.user.firstName.charAt(0).concat(this.user.lastName).toLowerCase();
-                if (this.isNewUser)
+                        if (this.user.password === this.user.confirmPassword)
 
-                    api.addNewUser(this.user).then(res => {
-                        this.userList.push(res.data)
-                        this.showNotification('User has been added', 'success')
-                    }).catch(err => {
-                        if (err.response)
-                            this.showNotification(err.response.data, 'error')
+                            api.addNewUser(this.user).then(res => {
+                                this.userList.push(res.data)
+                                this.showNotification('User has been added', 'success')
+                            }).catch(err => {
+                                this.submitStatus = 'ERROR'
+                                if (err.response) {
+                                    if (err.response.status === 401)
+                                        this.showNotification('Unauthorized access', 'error')
+                                    else
+                                        this.showNotification(err.response.data, 'error')
+                                } else
+                                    this.showNotification('An error occurred', 'error')
+                            })
                         else
-                            this.showNotification('An error occurred', 'error')
-                    })
-                else {
-                    api.editUser(this.user._id, this.user).then(res => {
-                        this.getUserList()
-                        this.isNewUser = true
-                        this.showNotification('User updated!', 'success')
+                            this.showNotification('Passwords do not match', 'error')
+                    } else {
+                        api.editUser(this.user._id, this.user).then(res => {
+                            this.getUserList()
+                            this.isNewUser = true
+                            this.showNotification('User updated!', 'success')
 
-                    }).catch(err => {
-                        if (err.response)
-                            this.showNotification(err.response.data, 'error')
-                        else
-                            this.showNotification('An error occurred', 'error')
+                        }).catch(err => {
+                            this.submitStatus = 'ERROR'
+                            if (err.response)
+                                this.showNotification(err.response.data, 'error')
+                            else
+                                this.showNotification('An error occurred', 'error')
 
-                    })
+                        })
+                    }
                 }
             },
 
@@ -247,13 +329,16 @@
                         res.data.forEach(user => {
                             this.userList.push(user)
                         })
-                    }else
-                     this.usersFound = false
+                    } else
+                        this.usersFound = false
 
                 }).catch(err => {
-                    if (err.response)
-                        this.showNotification(err.response.data, 'error')
-                    else
+                    if (err.response) {
+                        if (err.response.status === 401)
+                            this.showNotification('Unauthorized access', 'error')
+                        else
+                            this.showNotification(err.response.data, 'error')
+                    } else
                         this.showNotification('An error occurred', 'error')
                 })
 

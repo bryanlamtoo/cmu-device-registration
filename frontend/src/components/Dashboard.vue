@@ -157,6 +157,12 @@
             percentageIncreaseDevices: function () {
 
                 return ((this.deviceStats.devicesThisMonth - this.deviceStats.devicesLastMonth) / this.deviceStats.devicesLastMonth) * 100
+            },
+            userDetails(){
+                return this.$store.getters.user
+            },
+            auth(){
+                return this.$store.getters.isAuthenticated
             }
         }
     }

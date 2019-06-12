@@ -11,8 +11,9 @@
                         <div class="availability-bubble online"></div>
                     </div>
                     <div class="user-info sm">
-                        <div class="username">Brian <span class="semi-bold">Lamtoo</span></div>
-                        <div class="status">Life goes on...</div>
+                        <div class="username">{{userDetails.firstName}} <span
+                                class="semi-bold">{{userDetails.lastName}}</span></div>
+                        <div class="status">{{userDetails.email}}</div>
                     </div>
                 </div>
                 <!-- END MINI-PROFILE -->
@@ -21,7 +22,8 @@
                         class="material-icons">refresh</i></a></span></p>
                 <ul>
                     <li>
-                        <router-link to="/"><i class="material-icons">home</i> <span class="title">Dashboard</span></router-link>
+                        <router-link to="/"><i class="material-icons">home</i> <span class="title">Dashboard</span>
+                        </router-link>
                     </li>
                     <li class="status active">
                         <router-link to="/devices">
@@ -31,7 +33,8 @@
                     </li>
 
                     <li>
-                        <router-link to="/manageUsers"><i class="fa fa-users"></i><span class="title">Manage Users</span> </router-link>
+                        <router-link to="/manageUsers"><i class="fa fa-users"></i><span
+                                class="title">Manage Users</span></router-link>
                     </li>
 
 
@@ -53,7 +56,13 @@
 
 <script>
     export default {
-        name: "AppSidebar"
+        name: "AppSidebar",
+
+        computed: {
+            userDetails() {
+                return this.$store.getters.user
+            }
+        }
     }
 </script>
 
