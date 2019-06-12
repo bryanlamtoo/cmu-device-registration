@@ -3,7 +3,7 @@ const ldap = require('ldapjs')
 const Constants = require('../utils/constants')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const Shell = require('node-powershell')
 const ldapOptions = {
     url: 'ldap://40.127.2.44:389',
     // url: 'ldap://cmu-r.cmu.local',
@@ -36,13 +36,31 @@ exports.loginUser = (req, res) => {
 
             console.log('Initializing ldap connection ...')
 
+            //Initiate the power shell to reserve IP address
+            let ps = new Shell({
+                executionPolicy: 'Bypass',
+                noProfile: true
+            })
+            
+            let cmd = './powershell/Get-DHCPLeases.ps1 -IP'
+            console.log('Command: ', cmd)
+            ps.addCommand(cmd);
+
+            ps.invoke()
+                .then(output => {
+                    console.log(output);
+                }).catch(err => {
+                console.log('DHCP Error', err);
+                ps.dispose();
+            });
+
 
             //Try to bind/authenticate the user on the active directory the search for the user details in the directory
             ldapClient.bind(loginId, password, function (err) {
 
                 let msg = {}
 
-                console.log('Error: ',err)
+                console.log('Error: ', err)
 
                 if (err) {
 

@@ -1,7 +1,6 @@
 const deviceModel = require('../models/device')
 const Constants = require('../utils/constants')
 const Shell = require('node-powershell')
-const ps = new Shell();
 const ITEMS_PER_PAGE = 10;
 const moment = require('moment')
 
