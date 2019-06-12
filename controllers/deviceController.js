@@ -139,7 +139,7 @@ function addDeviceToNetwork(savedDevice, resp) {
         /**
          * Invoke the powershel script to reserver the IP address on the server
          */
-        let cmd = './powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + '42.0.0.0' + ' -server ' + serverName
+        let cmd = './powershell/register-db_NEW.ps1 -IP ' + ipAddr + ' -mac ' + savedDevice.mac + ' -subnetId ' + '40.0.0.0' + ' -server ' + serverName
         console.log('Command: ', cmd)
         ps.addCommand(cmd);
 
