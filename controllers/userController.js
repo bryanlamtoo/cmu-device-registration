@@ -93,7 +93,14 @@ exports.listUsers = (req, res) => {
                 }
                 let msg = {}
 
-                ldapClient.bind(ldapOptions.bindDN, ldapOptions.credentials, function (err) {
+                let loginId = ldapOptions.bindDN + '@' + process.env.LDAP_DOMAIN
+
+
+                ldapClient.bind(loginId, ldapOptions.credentials, function (err) {
+
+                    console.log('User', loginId)
+                    console.log('Pass', ldapOptions.credentials)
+
                     let msg = {}
                     if (err) {
                         console.log("Error binding to LDAP", 'dn: ' + err.dn + '\n code: ' + err.code + '\n message: ' + err.message);
