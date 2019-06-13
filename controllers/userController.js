@@ -89,7 +89,9 @@ exports.listUsers = (req, res) => {
                  */
                 const suffix = 'dc=go, dc=rwanda, dc=cmu, dc =local'
                 const opts = {
-                    scope: 'sub'
+                    scope: 'sub',
+                    paged: true,
+                    sizeLimit: 200
                 }
                 let msg = {}
 

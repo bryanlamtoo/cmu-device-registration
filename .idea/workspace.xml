@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59158ae8-a4cf-4f35-a8d2-54deb62786b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -28,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/userController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="95" column="80" selection-start-line="95" selection-start-column="80" selection-end-line="95" selection-end-column="80" />
+            <state relative-caret-position="236">
+              <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
               <folding>
                 <element signature="e#2395#2435#0" />
               </folding>
@@ -345,7 +344,7 @@
       <workItem from="1560317361016" duration="10446000" />
       <workItem from="1560339644637" duration="9993000" />
       <workItem from="1560426964453" duration="109000" />
-      <workItem from="1560440821753" duration="7191000" />
+      <workItem from="1560440821753" duration="7317000" />
     </task>
     <task id="LOCAL-00001" summary="Changed server name">
       <created>1560440917326</created>
@@ -358,7 +357,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182699000" />
+    <option name="totallyTimeSpent" value="182825000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -730,8 +729,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/userController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="95" column="80" selection-start-line="95" selection-start-column="80" selection-end-line="95" selection-end-column="80" />
+        <state relative-caret-position="236">
+          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
           <folding>
             <element signature="e#2395#2435#0" />
           </folding>
