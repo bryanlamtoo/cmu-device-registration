@@ -6,11 +6,11 @@ let appSecret = global.gConfig.appSecret
 const ldap = require('ldapjs')
 
 const ldapOptions = {
-    url: process.env["LDAP_URL"],
+    url: process.env.LDAP_URL,
     connectTimeout: 30000,
     reconnect: true,
-    bindDN: process.env["LDAP_BIND_USER"],
-    credentials: process.env["LDAP_BIND_PASSWORD"]
+    bindDN: process.env.LDAP_BIND_USER,
+    credentials: process.env.LDAP_BIND_PASSWORD
 };
 
 const ldapClient = ldap.createClient(ldapOptions);
