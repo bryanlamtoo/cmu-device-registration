@@ -4,10 +4,13 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 let appSecret = global.gConfig.appSecret
 const ldap = require('ldapjs')
+
 const ldapOptions = {
-    url: 'ldap://rwn-ad-001.go.rwanda.cmu.local',
+    url: process.env["LDAP_URL"],
     connectTimeout: 30000,
-    reconnect: true
+    reconnect: true,
+    bindDN: process.env["LDAP_BIND_USER"],
+    credentials: process.env["LDAP_BIND_PASSWORD"]
 };
 
 const ldapClient = ldap.createClient(ldapOptions);
@@ -72,6 +75,12 @@ exports.listUsers = (req, res) => {
 
             if (user && user.userClass === 'admin') {
 
+
+                ldapClient.on('error', function (e) {
+                    console.log('LDAP connection error:', e);
+                });
+
+
                 //now connect to the DHCP serve and fetch all users
                 /**
                  * OU = Organizational Uni
@@ -84,29 +93,48 @@ exports.listUsers = (req, res) => {
                 }
                 let msg = {}
 
-                ldapClient.search(suffix, opts, function (err, searchRes) {
+                ldapClient.bind(ldapOptions.bindDN, ldapOptions.credentials, function (err) {
+                    let msg = {}
+                    if (err) {
+                        console.log("Error binding to LDAP", 'dn: ' + err.dn + '\n code: ' + err.code + '\n message: ' + err.message);
 
-                    if (err !== 'undefined') {
-                        msg.msg = 'An error occurred'
-                        msg.error = null
-
-                        res.status(404).json(msg)
-
+                        if (err.name === 'InvalidCredentialsError') {
+                            msg.msg = 'Login failed, Invalid Credentials'
+                            msg.error = err
+                            res.status(401).json(msg);
+                        } else {
+                            msg.msg = 'Unknown Error Occurred'
+                            msg.error = null
+                            res.status(401).json(msg)
+                        }
                         return;
+
+                    } else {
+
+                        ldapClient.search(suffix, opts, function (err, searchRes) {
+
+                            if (err !== 'undefined') {
+                                msg.msg = 'An error occurred'
+                                msg.error = null
+
+                                res.status(404).json(msg)
+
+                                return;
+                            }
+                            searchRes.on('searchEntry', function (entry) {
+                                console.log('entry: ' + JSON.stringify(entry.object));
+
+                                return res.send(200)
+                            });
+
+                            searchRes.on("error", (err) => {
+                                console.error('error: ' + err.message);
+                                return res.json('User not found');
+                            });
+
+                        })
                     }
-                    searchRes.on('searchEntry', function(entry) {
-                        console.log('entry: ' + JSON.stringify(entry.object));
-
-                    return    res.send(200)
-                    });
-
-                    searchRes.on("error", (err) => {
-                        console.error('error: ' + err.message);
-                     return   res.json('User not found');
-                    });
-
                 })
-
 
             } else
                 return res.status(401).json('You are not authorized to access this resource')
