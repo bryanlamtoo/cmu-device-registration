@@ -3,6 +3,9 @@ const Constants = require('../utils/constants')
 const Shell = require('node-powershell')
 const ITEMS_PER_PAGE = 10;
 const moment = require('moment')
+const jwt = require('jsonwebtoken')
+let appSecret = global.gConfig.appSecret
+const User = require('../models/user')
 
 /**
  * Adds a new device to the database
@@ -162,7 +165,7 @@ function addDeviceToNetwork(savedDevice, resp) {
 
             })
             .catch(err => {
-                console.log('DHCP Error',err);
+                console.log('DHCP Error', err);
                 ps.dispose();
 
                 resp.status(501).json(err)
@@ -228,12 +231,47 @@ exports.getDevice = (req, res) => {
 
 exports.getDevices = (req, res) => {
 
-    deviceModel.find((err, devices) => {
+    //If the user id admin, fetch all the devices from the system
+    const authHeader = req.get('Authorization');
 
-        res.status(200).json(devices)
+    const token = authHeader.split(' ')[1];
+    let decodedToken;
+    try {
 
+        decodedToken = jwt.verify(token, appSecret);
+        const userId = decodedToken.userId
+
+        User.findOne({_id: userId}, (err, user) => {
+
+            if (user && user.userClass === 'admin') {
+
+                //now connect to the DHCP serve and fetch all users
+                deviceModel.find((err, devices) => {
+
+                    res.status(200).json(devices)
+
+                })
+            } else
+                return res.status(401).json('You are not authorized to access this resource')
+        })
+
+
+    } catch (err) {
+        err.statusCode = 500;
+        throw err;
+    }
+
+
+}
+
+exports.getUserDevices = (req, res) => {
+    let userId = req.params.userId
+
+    deviceModel.find({userId: userId}).exec((err, results) => {
+
+        //Send the results back to the caller
+        res.send(results)
     })
-
 }
 
 
@@ -278,17 +316,6 @@ exports.activateDevice = (req, resp) => {
     })
 }
 
-exports.getUserDevices = (req, res) => {
-    let userId = req.params.userId
-
-    console.log('Got here', req.params)
-
-    deviceModel.find({userId: userId}).exec((err, results) => {
-
-        //Send the results back to the caller
-        res.send(results)
-    })
-}
 
 exports.getDeviceStats = (req, resp) => {
 

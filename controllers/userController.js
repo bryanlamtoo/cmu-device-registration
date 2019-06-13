@@ -1,6 +1,17 @@
 const User = require('../models/user')
 const moment = require('moment')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+let appSecret = global.gConfig.appSecret
+const ldap = require('ldapjs')
+const ldapOptions = {
+    url: 'ldap://rwn-ad-001.go.rwanda.cmu.local',
+    connectTimeout: 30000,
+    reconnect: true
+};
+
+const ldapClient = ldap.createClient(ldapOptions);
+
 
 exports.addUser = (req, resp) => {
 
@@ -47,9 +58,70 @@ exports.addUser = (req, resp) => {
 }
 
 exports.listUsers = (req, res) => {
-    User.find((err, users) => {
-        res.status(200).json(users)
-    })
+    const authHeader = req.get('Authorization');
+
+    const token = authHeader.split(' ')[1];
+    let decodedToken;
+
+    try {
+
+        decodedToken = jwt.verify(token, appSecret);
+        const userId = decodedToken.userId
+
+        User.findOne({_id: userId}, (err, user) => {
+
+            if (user && user.userClass === 'admin') {
+
+                //now connect to the DHCP serve and fetch all users
+                /**
+                 * OU = Organizational Uni
+                 * DC = Domain Component
+                 * CN = Common Name
+                 */
+                const suffix = 'dc=go, dc=rwanda, dc=cmu, dc =local'
+                const opts = {
+                    scope: 'sub'
+                }
+                let msg = {}
+
+                ldapClient.search(suffix, opts, function (err, searchRes) {
+
+                    if (err !== 'undefined') {
+                        msg.msg = 'An error occurred'
+                        msg.error = null
+
+                        res.status(404).json(msg)
+
+                        return;
+                    }
+
+                    searchRes.on('searchEntry', function(entry) {
+                        console.log('entry: ' + JSON.stringify(entry.object));
+
+                        res.send(200)
+                    });
+
+                    searchRes.on("error", (err) => {
+                        console.error('error: ' + err.message);
+                        res.json('User not found');
+                    });
+
+                })
+
+
+            } else
+                return res.status(401).json('You are not authorized to access this resource')
+        })
+
+
+    } catch (err) {
+        err.statusCode = 500;
+        throw err;
+    }
+
+    // User.find((err, users) => {
+    //     res.status(200).json(users)
+    // })
 }
 
 /**

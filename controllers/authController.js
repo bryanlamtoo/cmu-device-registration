@@ -5,8 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Shell = require('node-powershell')
 const ldapOptions = {
-    url: 'ldap://40.127.2.44:389',
-    // url: 'ldap://cmu-r.cmu.local',
+    url: 'ldap://rwn-ad-001.go.rwanda.cmu.local',
     connectTimeout: 30000,
     reconnect: true
 };
@@ -21,7 +20,7 @@ exports.loginUser = (req, res) => {
 
     let username = req.body.username;
     let password = req.body.password;
-    let domain = 'cmu.local' //The server DNS domain name
+    let domain = 'go.rwanda.cmu.local' //The DNS server domain name
 
     let loginId = username + '@' + domain
 
@@ -37,22 +36,22 @@ exports.loginUser = (req, res) => {
             console.log('Initializing ldap connection ...')
 
             //Initiate the power shell to reserve IP address
-            let ps = new Shell({
-                executionPolicy: 'Bypass',
-                noProfile: true
-            })
+            // let ps = new Shell({
+            //     executionPolicy: 'Bypass',
+            //     noProfile: true
+            // })
 
-            let cmd = './powershell/Get-DHCPLeases.ps1'
-            console.log('Command: ', cmd)
-            ps.addCommand(cmd);
-
-            ps.invoke()
-                .then(output => {
-                    console.log(output);
-                }).catch(err => {
-                console.log('DHCP Error', err);
-                ps.dispose();
-            });
+            // let cmd = './powershell/Get-DHCPLeases.ps1'
+            // console.log('Command: ', cmd)
+            // ps.addCommand(cmd);
+            //
+            // ps.invoke()
+            //     .then(output => {
+            //         console.log(output);
+            //     }).catch(err => {
+            //     console.log('DHCP Error', err);
+            //     ps.dispose();
+            // });
 
 
             //Try to bind/authenticate the user on the active directory the search for the user details in the directory

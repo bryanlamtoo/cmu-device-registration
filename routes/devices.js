@@ -92,7 +92,7 @@ router.get('/recent', controller.getRecentlyAdded);
  *       '200':
  *         description: OK
  */
-router.get('/:userId/:deviceId', controller.getDevice);
+router.get('/:userId/:deviceId', controller.getUserDevices);
 
 /**
  * @swagger

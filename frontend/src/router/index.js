@@ -7,6 +7,7 @@ import UserList from "../components/UserList";
 import Dashboard from "../components/Dashboard";
 import Signin from "../components/auth/Signin";
 import store from '../store'
+import ManageDevices from "../components/ManageDevices";
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
                     path: '/manageUsers',
                     component: UserList,
                     name: 'Manage Users'
+                },
+                {
+                    path: '/manageDevices',
+                    component: ManageDevices,
+                    name: 'Manage Devices'
                 },
             ],
             beforeEnter(to, from, next) {
