@@ -119,15 +119,13 @@ function addDeviceToNetwork(savedDevice, resp) {
          * Declare the variables to be used
          */
         let regType;
-        const serverName = 'rwn-ad-001.go.illinois.dvp s.local'
-        // const serverName = 'cmu-r.cmu.local'
-        // const serverName = '40.127.2.44'
+        const serverName = 'rwn-ad-001.go.rwanda.cmu.local'
         if (savedDevice.connectionType === Constants.ConnectionType.WLAN)
             regType = 52
         else
             regType = 54
 
-        let subnetID = '172.29' + regType + '.0'
+        let subnetID = '172.29.' + regType + '.0'
 
 
         //Initiate the power shell to reserve IP address
