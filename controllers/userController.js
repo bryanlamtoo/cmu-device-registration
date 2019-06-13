@@ -94,16 +94,15 @@ exports.listUsers = (req, res) => {
 
                         return;
                     }
-
                     searchRes.on('searchEntry', function(entry) {
                         console.log('entry: ' + JSON.stringify(entry.object));
 
-                        res.send(200)
+                    return    res.send(200)
                     });
 
                     searchRes.on("error", (err) => {
                         console.error('error: ' + err.message);
-                        res.json('User not found');
+                     return   res.json('User not found');
                     });
 
                 })
