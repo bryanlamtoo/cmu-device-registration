@@ -122,7 +122,7 @@ exports.listUsers = (req, res) => {
 
                         ldapClient.search(suffix, opts, function (err, searchRes) {
 
-                            if (err !== 'undefined') {
+                            if (err !== 'undefined' && err !== null) {
                                 msg.msg = 'An error occurred'
                                 msg.error = null
 

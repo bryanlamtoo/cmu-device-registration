@@ -12,7 +12,14 @@ const ldapOptions = {
 
 const ldapClient = ldap.createClient(ldapOptions);
 
+exports.logoutUser = (req, res) => {
+    console.log('Loggin out user...')
 
+    req.session.destroy(err => {
+        console.log(err)
+        res.json('User logged out successfully')
+    })
+}
 exports.loginUser = (req, res) => {
     console.log('Attempting user login...')
 
@@ -25,13 +32,13 @@ exports.loginUser = (req, res) => {
     let loginId = username + '@' + domain
 
 
-    User.findOne().byLoginId(username).exec(function (err, user) {
+    User.findOne().byLoginId(username).exec(function (err, userRes) {
 
         if (err) {
             return res.status(500).json('An unexpected error occurred')
         }
 
-        if (user === null || user.length === 0) {
+        if (userRes === null || userRes.length === 0) {
 
             console.log('Initializing ldap connection ...')
 
@@ -59,9 +66,8 @@ exports.loginUser = (req, res) => {
 
                 let msg = {}
 
-                console.log('Error: ', err)
-
                 if (err) {
+                    console.log('Bind Error: ', err)
 
                     if (err.name === 'InvalidCredentialsError') {
                         msg.msg = 'Login failed, Invalid Credentials'
@@ -88,7 +94,10 @@ exports.loginUser = (req, res) => {
 
                     }, function (err, searchRes) {
 
-                        if (err !== 'undefined') {
+                        let user = {};
+                        console.log('RES ERROR', err)
+
+                        if (err !== 'undefined' && err !== null) {
                             msg.msg = 'User details not found'
                             msg.error = null
 
@@ -125,6 +134,11 @@ exports.loginUser = (req, res) => {
                             res.json('User not found');
                         });
 
+                        searchRes.on("end", (result) => {
+                            console.error('Result: ' + result);
+                            return;
+                        });
+
                     })
                 }
             })
@@ -133,16 +147,16 @@ exports.loginUser = (req, res) => {
 
             console.log('Found local account');
 
-            bcrypt.compare(password, user.password).then(doMatch => {
+            bcrypt.compare(password, userRes.password).then(doMatch => {
 
                 if (doMatch) {
                     let appSecret = global.gConfig.appSecret
                     const token = jwt.sign({
-                        username: user.username,
-                        userId: user._id
+                        username: userRes.username,
+                        userId: userRes._id
                     }, appSecret, {expiresIn: '1h'})
 
-                    res.status(200).json({token: token, user: user})
+                    res.status(200).json({token: token, user: userRes})
 
                 } else
                     res.status(401).json('Invalid Credentials')
@@ -156,9 +170,3 @@ exports.loginUser = (req, res) => {
     })
 }
 
-exports.logoutUser = (req, res) => {
-    req.session.destroy(err => {
-        console.log(err)
-        res.json('User logged out successfully')
-    })
-}

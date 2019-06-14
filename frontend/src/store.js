@@ -36,6 +36,7 @@ export default new VueX.Store({
         logout({commit}) {
             commit('clearAuthUser')
             router.replace('/signin')
+            return api.signOutUser()
         }
 
     },
