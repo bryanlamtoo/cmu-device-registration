@@ -81,7 +81,7 @@ exports.loginUser = (req, res) => {
                      * DC = Domain Component
                      * CN = Common Name
                      */
-                    const suffix = 'ou=cmu, dc=cmu, dc =local'
+                    const suffix = 'ou=user-accounts, dc=go, dc=rwanda, dc=cmu, dc=local'
                     ldapClient.search(suffix, {
                         scope: 'sub',
                         filter: '(sAMAccountName=' + username + ')'
@@ -100,6 +100,7 @@ exports.loginUser = (req, res) => {
                         //when we get a result that is the user data
                         searchRes.on('searchEntry', function (entry) {
 
+                            console.log('entry: ' + JSON.stringify(entry.object));
 
                             user.username = entry.object.sAMAccountName
                             user.email = entry.object.userPrincipalName

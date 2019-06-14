@@ -85,9 +85,9 @@ exports.listUsers = (req, res) => {
                 /**
                  * OU = Organizational Uni
                  * DC = Domain Component
-                 * CN = Common Name
+                 * CN = Common Name a.k.a Container in AD
                  */
-                const suffix = 'dc=go, dc=rwanda, dc=cmu, dc =local'
+                const suffix = 'ou=students, ou=user-accounts, dc=go, dc=rwanda, dc=cmu, dc=local'
                 const opts = {
                     scope: 'sub',
                     paged: true,
@@ -126,19 +126,26 @@ exports.listUsers = (req, res) => {
                                 msg.msg = 'An error occurred'
                                 msg.error = null
 
+                                console.log('Error MSG', err)
                                 res.status(404).json(msg)
 
-                                return;
                             }
                             searchRes.on('searchEntry', function (entry) {
+                                console.log('ENTRY: ', entry.object.name)
                                 console.log('entry: ' + JSON.stringify(entry.object));
+                            });
 
-                                return res.send(200)
+                            searchRes.on('searchReference', referral => {
+                                console.log('referral: ' + referral.uris.join());
                             });
 
                             searchRes.on("error", (err) => {
                                 console.error('error: ' + err.message);
-                                return res.json('User not found');
+                            });
+
+                            searchRes.on("end", (result) => {
+                                console.error('Result: ' + result);
+                                return res.json(result);
                             });
 
                         })
