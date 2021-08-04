@@ -24,7 +24,7 @@
     "node-sass-middleware": "0.11.0",
     "swagger-jsdoc": "^3.2.9",
     "swagger-ui-express": "^4.0.5",
-    "tar": "^4.4.8",
+    "tar": "^4.4.15",
     "vuelidate": "^0.7.4",
     "vuex-persist": "^2.0.1"
   }
