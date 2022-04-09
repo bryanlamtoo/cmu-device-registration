@@ -17,7 +17,7 @@
     "express-session": "^1.16.1",
     "jsonwebtoken": "^8.5.1",
     "ldapjs": "^1.0.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.5.7",
     "morgan": "~1.9.0",
     "node-powershell": "^4.0.0",
